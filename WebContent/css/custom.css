@@ -1,0 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css);
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+@import url(td.css);
+@import url(notif.css);
+@import url(navbar.css);
+@import url(carousel.css);
+@import url(panelmodal.css);
+
+/*test*/
+.liblock{
+  display:inline-block;
+  margin: 0px 15px;
+}
+.break {
+  border-top-width: 1px;
+  border-top-color: rgb(204, 204, 204);
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(255, 255, 255);
+  clear: both;
+  border-style: solid;
+}
+
+
+body{
+  background-color: transparent;
+  font-family: "Roboto Slab";
+}
+html{
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: white;
+  margin: 0;
+}
+
+html{
+  padding-top: 0px;
+  background: url(bg/bg.jpg) !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.form-control:active{
+  border-color:#FF3030;
+}
+
+.trans {
+  background-color: rgba(255,255,255, 0.6);
+  padding-bottom: 30px;
+  padding-top: 0px;
+}
+
+.container-custom{
+  margin-top: 65px;
+}
+
+.span-custom{
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 100;
+}
+
+.jumbotron-custom{
+  background-color: rgba(255,255,255,0.6);
+}
+
+.accordian-custom{
+  margin-left: 15px;
+}
+
+.btn-info{
+  background-color: #222;
+  border-color: #222;
+}
+
+.btn-info:hover{
+  background-color: #FF3030;
+  border-color: #FF3030;
+}
+
+.course-wrapper{
+  overflow:auto;
+  min-height:230px;
+  max-height:230px;
+}

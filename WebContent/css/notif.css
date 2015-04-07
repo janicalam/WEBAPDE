@@ -1,0 +1,63 @@
+/*Notifs*/
+
+.notif {
+  min-width:320px; 
+}
+  
+.notif-wrapper, .request-wrapper {
+  overflow:auto;
+  max-height:245px;
+}
+
+.item-text {
+ font-size:1.4rem;
+ color:#fff;
+ font-family: "Roboto Slab"; 
+}
+
+.item-details{
+  padding-left: 10px;
+  font-size:1.3rem;
+  color:#fff;
+  font-family: "Roboto Slab"; 
+}
+
+.notif a.content {
+ text-decoration:none;
+ background:#ccc;
+ font-family: "Roboto Slab";
+ }
+    
+.notif-item {
+ padding:10px;
+ margin:5px;
+ background:#444;
+ border-radius:4px;
+ font-family: "Roboto Slab";
+ }
+
+.notif-item:hover {
+ background: #FF3030;
+ font-family: "Roboto Slab";
+ }
+
+/*Dropdown menu effect*/
+/*
+.open > .dropdown-menu {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);  
+  
+}
+
+.dropdown-menu {
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  -webkit-animation-fill-mode: forwards;  
+  animation-fill-mode: forwards; 
+  -webkit-transform: scale(1, 0);
+  display: block;
+  
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+*/ 

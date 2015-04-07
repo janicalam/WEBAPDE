@@ -1,0 +1,26 @@
+/*sched td*/
+.td-selected{
+  background-color: #FF3030;
+}
+
+.td-selected{
+  background-color: #FF3030 !important;
+  cursor: pointer;
+  cursor: not-allowed;
+}
+
+.td-select{
+  background-color: #0eb0ff;
+}
+
+.td-select:hover{
+  background-color: #0eb0ff !important;
+  cursor: pointer;
+  cursor: hand; 
+}
+
+.td-active:hover{
+  background-color: #addbe1;
+  cursor: pointer;
+  cursor: hand;
+}

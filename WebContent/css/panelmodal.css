@@ -1,0 +1,20 @@
+/*panel and modal custom*/
+.panel-primary{
+  border-color: #FF3030;
+}
+
+.panel-th{
+  border-color: #FF3030 !important;
+  background-color: #222 !important;
+  color: white !important;
+}
+
+.modal-wrapper{
+  overflow:auto;
+  min-height: 250px;
+  max-height: 250px;
+}
+
+.modal-login{
+  padding-top: 100px;
+}
