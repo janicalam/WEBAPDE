@@ -1,5 +1,4 @@
-package edu.webapde.dto.student;
-
+package edu.webapde.dto.professor;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class StartServlet
+ * Servlet implementation class ToProfessorViewRequest
  */
-@WebServlet("/StartServlet")
-public class StartServlet extends HttpServlet {
+@WebServlet("/ToProfessorViewRequest")
+public class ToProfessorViewRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StartServlet() {
+    public ToProfessorViewRequest() {
         super();
         // TODO Auto-generated constructor stub
-        
     }
 
 	/**
@@ -30,7 +28,7 @@ public class StartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		request.getRequestDispatcher("LogIn.jsp").forward(request, response);
+		request.getRequestDispatcher("ProfessorViewRequest.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,8 +36,6 @@ public class StartServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		request.getRequestDispatcher("LogIn.jsp").forward(request, response);
 	}
 
 }

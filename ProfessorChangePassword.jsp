@@ -33,7 +33,7 @@
           <!-- responsive toggle button end -->
 
           <!-- software name start -->
-          <a href="ProfessorHome.html" class="navbar-brand span-custom " style="padding-top: 13px">
+          <a href="LogInServlet" class="navbar-brand span-custom " style="padding-top: 13px">
             <span class="glyphicon glyphicon-search"></span>
             Consult.<span class="red">Me</span>
           </a>
@@ -42,8 +42,8 @@
 
         <!-- link pages start -->
         <ul class="collapse navbar-collapse nav navbar-nav nav-opt-custom" id = "links">
-          <li><a href="ProfessorEditConsultation.html">Edit Consultation Schedule</a></li>
-          <li><a href="ProfessorViewRequest.html">View Requests</a></li>
+          <li><a href="ToProfessorEditConsultation">Edit Consultation Schedule</a></li>
+          <li><a href="ToProfessorViewRequest">View Requests</a></li>
         </ul>
         <!-- link pages end -->
         
@@ -51,9 +51,9 @@
         <div class = "navbar-right collapse navbar-collapse" id = "user">
               <ul class="nav navbar-nav nav-user-custom">
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="glyphicon glyphicon-user"></span><span class = "span-custom"> Courtney Ngo</span> <span class="caret"></span></a>
+                  <span class="glyphicon glyphicon-user"></span><span class = "span-custom"> ${sessionScope.profile.lastName}, ${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="ProfessorChangePassword.html"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
+                    <li><a href="ToProfessorChangePassword"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
                     <li><a href="Login.html"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
                   </ul>
                 </li>

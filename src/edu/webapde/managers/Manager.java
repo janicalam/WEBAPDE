@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import edu.webapde.dto.course.Course;
 import edu.webapde.dto.db.DBConnection;
 import edu.webapde.dto.profile.*;
 

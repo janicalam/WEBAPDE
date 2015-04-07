@@ -1,4 +1,4 @@
-package edu.webapde.dto.student;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -47,7 +47,11 @@ public class LogInServlet extends HttpServlet {
 		if (new Manager().getProfile(idnum, password) != null) {
 			Profile p = new Manager().getProfile(idnum, password);
 			request.getSession().setAttribute("profile", p);
-			request.getRequestDispatcher("StudentHome.jsp").forward(request,
+			if(p.getType().equals("Student"))
+				request.getRequestDispatcher("StudentHome.jsp").forward(request,
+					response);
+			else 
+				request.getRequestDispatcher("ProfessorHome.jsp").forward(request,
 					response);
 		} else {
 			request.getRequestDispatcher("StartServlet").forward(request,

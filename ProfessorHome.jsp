@@ -33,7 +33,7 @@
           <!-- responsive toggle button end -->
 
           <!-- software name start -->
-          <a href="ProfessorHome.html" class="navbar-brand span-custom " style="padding-top: 13px">
+          <a href="ProfessorHome.jsp" class="navbar-brand span-custom " style="padding-top: 13px">
             <span class="glyphicon glyphicon-search"></span>
             Consult.<span class="red">Me</span>
           </a>
@@ -42,8 +42,8 @@
 
         <!-- link pages start -->
         <ul class="collapse navbar-collapse nav navbar-nav nav-opt-custom" id = "links">
-          <li><a href="ProfessorEditConsultation.html">Edit Consultation Schedule</a></li>
-          <li><a href="ProfessorViewRequest.html">View Requests</a></li>
+          <li><a href="ToProfessorEditConsultation">Edit Consultation Schedule</a></li>
+          <li><a href="ToProfessorViewRequest">View Requests</a></li>
         </ul>
         <!-- link pages end -->
         
@@ -51,9 +51,9 @@
         <div class = "navbar-right collapse navbar-collapse" id = "user">
               <ul class="nav navbar-nav nav-user-custom">
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="glyphicon glyphicon-user"></span><span class = "span-custom"> Courtney Ngo</span> <span class="caret"></span></a>
+                  <span class="glyphicon glyphicon-user"></span><span class = "span-custom">${sessionScope.profile.lastName}, ${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="ProfessorChangePassword.html"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
+                    <li><a href="ToProfessorChangePassword"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
                     <li><a href="Login.html"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
                   </ul>
                 </li>
@@ -118,21 +118,12 @@
         <div id="carousel_slider" class="carousel slide img-rounded" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
-              <div class="item img-rounded carousel-1">
-                <div class="carousel-caption-custom ">
-                  <h1>Consult Me</h1>
-                  <p>Requesting consultations has never been this easy!</p>
-                  <a class = "btn btn-info" href="StudentRequestConsultation.html">
-                    <strong>Request Consultation Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
-                  </a>
-                </div>
-              </div>
               <div class="item img-rounded carousel-2">
                 <div class="carousel-caption-custom ">
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
-                  <a class = "btn btn-info" href="StudentViewRequest.html">
-                    <strong>View Requests Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
+                  <a class = "btn btn-info" href="ToProfessorViewRequest">
+                    <strong>View Requests Now! <span class = "glyphicon glyphicon-arrow-right"></span></strong>
                   </a>
                 </div>
               </div>
@@ -140,8 +131,8 @@
                 <div class="carousel-caption-custom ">
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
-                  <a class = "btn btn-info" href="StudentEditCourseList.html">
-                    <strong>Edit Course List Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
+                  <a class = "btn btn-info" href="ToProfessorEditCourseList">
+                    <strong>Edit Course List Now! <span class = "glyphicon glyphicon-arrow-right"></span></strong>
                   </a>
                 </div>
               </div>
