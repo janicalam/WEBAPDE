@@ -16,14 +16,36 @@ public class Manager
 	{
 	}
 	
+	public ArrayList<Course> getCourseList()
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum ";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+	
 	public ArrayList<Course> getAllCourseStudent(int idnum)
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Course> courseList = new ArrayList<Course>();
-		String sql ="SELECT C.coursecode, C.section, B.lname, B.fname"+
-				"FROM courses C, courseenrolled E, accounts A, accounts B"+
-				"WHERE E.idnum = 11335172 and C.idcourse = E.idcourse and E.idnum = A.idnum and A.type = "+"Student" +"and C.idprofessor = B.idnum"+
-				"GROUP By lname,fname;";
+		String sql ="SELECT C.coursecode, C.section, B.lname, B.fname FROM courses C, courseenrolled E, accounts A, accounts B WHERE E.idnum = ? and C.idcourse = E.idcourse and E.idnum = A.idnum and A.type = 'Student' and C.idprofessor = B.idnum";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,9 +54,10 @@ public class Manager
 			while (rs.next())
 			{
 				Course c = new Course();
-				c.setIdCourse(rs.getInt("idcourse"));
 				c.setCourseCode(rs.getString("coursecode"));
 				c.setSection(rs.getString("section"));
+				c.setProfessorFirst(rs.getString("fname"));
+				c.setProfessorLast(rs.getString("lname"));
 				courseList.add(c);
 			}
 		} catch (SQLException e)
