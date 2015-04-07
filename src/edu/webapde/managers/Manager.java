@@ -153,6 +153,26 @@ public class Manager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void changePassword(int idnum,String pw,String newPw)
+	{
+		String sql="UPDATE accounts SET password=?, WHERE idnum=? and password =?;";
+		Connection conn = DBConnection.getConnection();
 
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ps.setString(2, pw);
+			ps.executeUpdate();
+			conn.close();
+			ps.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
