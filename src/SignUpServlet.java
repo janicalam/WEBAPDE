@@ -64,8 +64,8 @@ public class SignUpServlet extends HttpServlet {
 			int idnum = Integer.parseInt(request.getParameter("idnum"));
 			String fname = request.getParameter("fname");
 			String lname = request.getParameter("lname");
-			String type = request.getParameter("type");
-			Profile p = new Profile(idnum,password,email,fname,lname,type);
+			//String type = request.getParameter("type");
+			Profile p = new Profile(idnum,password,email,fname,lname,"Student");
 			new Manager().addAccount(p);
 		}
 		

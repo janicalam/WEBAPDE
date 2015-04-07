@@ -104,12 +104,12 @@
         <div class = "jumbotron trans">
           <h1 style="padding-top: 20px"> Sign Up </h1> <!-- Title -->
           <hr class = "break"/> 
-          <form class="form-horizontal" role="form" method = "post" action = "SignUpServlet">
+          <form class="form-horizontal" role="form">
 
             <div class="form-group row">
               <label for="accountType" class = "control-label col-md-2">Account Type:</label>
               <div class = "col-md-3">
-                <select class = "form-control" id = "accountType" name = "type" value = "asd">
+                <select class = "form-control" id = "accountType" value = "asd">
                   <option> - </option>
                   <option> Student </option>
                   <option> Professor </option>
@@ -120,43 +120,43 @@
             <div class="form-group row">
               <label for="idnumber" class = "control-label col-md-2">ID Number:</label>
               <div class = "col-md-3">
-                <input type="number" class="form-control" id="idnumber" name = "idnum" placeholder="ID Number">
+                <input type="number" class="form-control" id="idnumber" placeholder="ID Number">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="firstname" class = "control-label col-md-2">First Name:</label>
               <div class = "col-md-3">
-                <input type="text" class="form-control" id="firstname" name = "fname" placeholder="First Name">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
               </div>
 
               <label for="lastname" class = "control-label col-md-2">Last Name:</label>
               <div class = "col-md-3">
-                <input type="text" class="form-control" id="lastname" name = "lname" placeholder="Last Name">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="dlsuemail" class = "control-label col-md-2">DLSU Email:</label>
               <div class = "col-md-3">
-                <input type="email" class="form-control" id="dlsuemail" name = "email" placeholder="Email">
+                <input type="email" class="form-control" id="dlsuemail" placeholder="Email">
               </div>
 
               <label for="confirmemail" class = "control-label col-md-2">Confirm Email:</label>
               <div class = "col-md-3">
-                <input type="email" class="form-control" id="confirmemail" name = "cemail" placeholder="Confirm Email">
+                <input type="email" class="form-control" id="confirmemail" placeholder="Confirm Email">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="firstpass" class = "control-label col-md-2">Password:</label>
               <div class = "col-md-3">
-                <input type="password" class="form-control" id="firstpass" name = "password" placeholder="Password">
+                <input type="password" class="form-control" id="firstpass" placeholder="Password">
               </div>
 
               <label for="confirmpass" class = "control-label col-md-2">Confirm Password:</label>
               <div class = "col-md-3">
-                <input type="password" class="form-control" id="lastname" name = "cpassword" placeholder="Confirm Password">
+                <input type="password" class="form-control" id="lastname" placeholder="Confirm Password">
               </div>
             </div>
 

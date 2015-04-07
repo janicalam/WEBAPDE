@@ -138,7 +138,7 @@
                         <td>${c.courseCode}</td>
                         <td>${c.section}</td>
                         <td>${c.professorLast}, ${c.professorFirst}</td>
-                        <td><form class="form-horizontal" action = "dropCourse"><button type="submit" method = "post" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Drop </button></form></td>
+                        <td><button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Drop </button></td>
                       </tr>
                       </c:forEach>
 
