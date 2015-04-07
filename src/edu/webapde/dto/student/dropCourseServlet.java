@@ -1,3 +1,4 @@
+package edu.webapde.dto.student;
 
 
 import java.io.IOException;
@@ -8,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChangePasswordServlet
+ * Servlet implementation class dropCourseServlet
  */
-@WebServlet("/ToChangePasswordServlet")
-public class ToChangePasswordServlet extends HttpServlet {
+@WebServlet("/DropCourse")
+public class dropCourseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ToChangePasswordServlet() {
+    public dropCourseServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +28,6 @@ public class ToChangePasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("StudentChangePassword.jsp").forward(request, response);
 	}
 
 	/**
@@ -36,6 +36,8 @@ public class ToChangePasswordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		request.getRequestDispatcher("ToStudentEditCourseList").forward(
+				request, response);
 	}
 
 }

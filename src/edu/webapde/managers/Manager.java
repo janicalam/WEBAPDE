@@ -160,4 +160,29 @@ public class Manager
 		return courseList;
 
 	}
+	
+	public void addRequest(Request r)
+	{
+		String sql = "INSERT INTO consultations(student,professor,date,fromtime,totime,course) "
+				+ "VALUES (?,?,?,?,?,?);";
+		Connection conn = DBConnection.getConnection();
+
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, r.getStudentID());
+			ps.setInt(2, r.getProfID());
+			ps.setString(3, r.getDate());
+			ps.setString(4, r.getFromTime());
+			ps.setString(5, r.getToTime());
+			ps.setString(6, r.getCourse());
+			ps.executeUpdate();
+			conn.close();
+			ps.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

@@ -1,3 +1,4 @@
+package edu.webapde.dto.student;
 
 
 import java.io.IOException;
@@ -8,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChangePasswordServlet
+ * Servlet implementation class StartServlet
  */
-@WebServlet("/ChangePasswordServlet")
-public class ChangePasswordServlet extends HttpServlet {
+@WebServlet("/StartServlet")
+public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangePasswordServlet() {
+    public StartServlet() {
         super();
         // TODO Auto-generated constructor stub
+        
     }
 
 	/**
@@ -27,6 +29,8 @@ public class ChangePasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		request.getRequestDispatcher("LogIn.jsp").forward(request, response);
 	}
 
 	/**
@@ -35,8 +39,7 @@ public class ChangePasswordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//should go to LogIn but wala pang cookies eh :D
-		request.getRequestDispatcher("StudentHome.jsp").forward(request, response);
+		request.getRequestDispatcher("LogIn.jsp").forward(request, response);
 	}
 
 }
