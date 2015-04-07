@@ -107,11 +107,11 @@ public class Manager
 
 	}
 
-	public ArrayList<Course> getAllCourses()
+	public ArrayList<Course> getCourseList()
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Course> courseList = new ArrayList<Course>();
-		String sql = "SELECT C.coursecode, C.section FROM courses C, courseenrolled E, accounts A WHERE C.idcourse = E.idcourse and E.idnum = A.idnum and A.type = 'Student'";
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum ";
 		try
 		{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -121,6 +121,8 @@ public class Manager
 				Course c = new Course();
 				c.setCourseCode(rs.getString("coursecode"));
 				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
 				courseList.add(c);
 			}
 		} catch (SQLException e)

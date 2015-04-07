@@ -38,8 +38,10 @@ public class ToStudentEditCourseList extends HttpServlet
 		// TODO Auto-generated method stub
 		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
 		ArrayList<Course> c = new Manager().getAllCourseStudent(p.getIdNo());
-
 		request.getSession().setAttribute("course", c);
+		
+		ArrayList<Course> cl = new Manager().getCourseList();
+		request.getSession().setAttribute("courselist", cl);
 
 		request.getRequestDispatcher("StudentEditCourseList.jsp").forward(
 				request, response);
