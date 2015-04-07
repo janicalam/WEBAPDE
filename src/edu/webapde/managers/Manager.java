@@ -6,11 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import edu.webapde.dto.course.Course;
 import edu.webapde.dto.db.DBConnection;
 import edu.webapde.dto.profile.*;
 
-public class AccountManager {
-	public AccountManager() {
+public class Manager {
+	public Manager() {
 	}
 
 	public Profile getProfile(int idnum, String password) {
@@ -94,6 +95,31 @@ public class AccountManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+	
+	public ArrayList<Course> getAllCourseStudent()
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT C.coursecode, C.section FROM courses C, courseenrolled E, accounts A WHERE C.idcourse = E.idcourse and E.idnum = A.idnum and A.type =" +"Student";
+		try
+		{
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setIdCourse(rs.getInt("idcourse"));
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
 
 	}
 }

@@ -2,7 +2,8 @@ package edu.webapde.dto.course;
 
 public class Course
 {
-	private String course;
+	private int idCourse;
+	private String courseCode;
 	private String section;
 	private String professor;
 	private String day;
@@ -14,10 +15,11 @@ public class Course
 
 	}
 
-	public Course(String course, String section, String professor, String day,
+	public Course(int idCourse, String course, String section, String professor, String day,
 			String startTime, String endTime)
 	{
-		this.course = course;
+		this.idCourse = idCourse;
+		this.courseCode = course;
 		this.professor = professor;
 		this.section = section;
 		this.day = day;
@@ -25,14 +27,24 @@ public class Course
 		this.endTime = endTime;
 	}
 
-	public String getCourse()
+	public int getIdCourse()
 	{
-		return course;
+		return idCourse;
 	}
 
-	public void setCourse(String course)
+	public void setIdCourse(int idCourse)
 	{
-		this.course = course;
+		this.idCourse = idCourse;
+	}
+
+	public String getCourseCode()
+	{
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode)
+	{
+		this.courseCode = courseCode;
 	}
 
 	public String getSection()
