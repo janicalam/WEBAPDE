@@ -123,7 +123,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="StudentRequestConsultation.html">
-                    <strong>Request Consultation Now! -></strong>
+                    <strong>Request Consultation Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
                   </a>
                 </div>
               </div>
@@ -132,7 +132,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="StudentViewRequest.html">
-                    <strong>View Requests Now! -></strong>
+                    <strong>View Requests Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
                   </a>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="StudentEditCourseList.html">
-                    <strong>Edit Course List Now! -></strong>
+                    <strong>Edit Course List Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
                   </a>
                 </div>
               </div>
