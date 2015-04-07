@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.webapde.dto.profile.Profile;
-import edu.webapde.managers.AccountManager;
+import edu.webapde.managers.Manager;
 
 
 /**
@@ -66,7 +66,7 @@ public class SignUpServlet extends HttpServlet {
 			String lname = request.getParameter("lname");
 			//String type = request.getParameter("type");
 			Profile p = new Profile(idnum,password,email,fname,lname,"Student");
-			new AccountManager().addAccount(p);
+			new Manager().addAccount(p);
 		}
 		
 		request.getRequestDispatcher("LogIn.jsp").forward(request, response);

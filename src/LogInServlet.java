@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.webapde.dto.profile.Profile;
-import edu.webapde.managers.AccountManager;
+import edu.webapde.managers.Manager;
 
 /**
  * Servlet implementation class LogInServlet
@@ -43,8 +43,8 @@ public class LogInServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int idnum = Integer.parseInt(request.getParameter("idnum"));
 		String password = request.getParameter("password");
-		if (new AccountManager().getProfile(idnum, password) != null) {
-			Profile p = new AccountManager().getProfile(idnum, password);
+		if (new Manager().getProfile(idnum, password) != null) {
+			Profile p = new Manager().getProfile(idnum, password);
 			request.getSession().setAttribute("profile", p);
 			request.getRequestDispatcher("StudentHome.jsp").forward(request,
 					response);

@@ -5,7 +5,8 @@ public class Course
 	private int idCourse;
 	private String courseCode;
 	private String section;
-	private String professor;
+	private String professorLast;
+	private String professorFirst;
 	private String day;
 	private String startTime;
 	private String endTime;
@@ -15,12 +16,13 @@ public class Course
 
 	}
 
-	public Course(int idCourse, String course, String section, String professor, String day,
+	public Course(int idCourse, String course, String section, String professorl, String professorf, String day,
 			String startTime, String endTime)
 	{
 		this.idCourse = idCourse;
 		this.courseCode = course;
-		this.professor = professor;
+		this.professorLast = professorl;
+		this.professorFirst = professorf;
 		this.section = section;
 		this.day = day;
 		this.startTime = startTime;
@@ -57,14 +59,25 @@ public class Course
 		this.section = section;
 	}
 
-	public String getProfessor()
+
+	public String getProfessorLast()
 	{
-		return professor;
+		return professorLast;
 	}
 
-	public void setProfessor(String professor)
+	public void setProfessorLast(String professorLast)
 	{
-		this.professor = professor;
+		this.professorLast = professorLast;
+	}
+
+	public String getProfessorFirst()
+	{
+		return professorFirst;
+	}
+
+	public void setProfessorFirst(String professorFirst)
+	{
+		this.professorFirst = professorFirst;
 	}
 
 	public String getDay()

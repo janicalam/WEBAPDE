@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>    
+<%@ taglib prefix = "c" uri= "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -132,26 +133,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var = "c" items = "${course}" varStatus = "counter">
                       <tr>
-                        <td>WEBAPDE</td>
-                        <td>S19</td>
-                        <td>Ms. Courtney Ngo</td>
+                        <td>${c.courseCode}</td>
+                        <td>${c.section}</td>
+                        <td>${c.professorLast}, ${c.professorFirst}</td>
                         <td><button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Drop </button></td>
                       </tr>
-
-                      <tr>
-                        <td>OPERSYS</td>
-                        <td>S17</td>
-                        <td>Mr. Solomon See</td>
-                        <td><button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Drop </button></td>
-                      </tr>
-
-                      <tr>
-                        <td>SPSWENG</td>
-                        <td>S20</td>
-                        <td>Ms. Ethel Ong</td>
-                        <td><button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span> Drop </button></td>
-                      </tr>
+                      </c:forEach>
 
                     </tbody>
                   </table>
