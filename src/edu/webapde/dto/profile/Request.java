@@ -3,11 +3,14 @@ package edu.webapde.dto.profile;
 public class Request
 {
 	private int studentID;
-	private int profID;
+	private String lastName;
+	private String firstName;
+	private int profId;
 	private String date;
 	private String fromTime;
 	private String toTime;
 	private String course;
+	private String status;
 
 	public Request()
 	{
@@ -19,19 +22,48 @@ public class Request
 		return studentID;
 	}
 
+	public String getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(String status)
+	{
+		this.status = status;
+	}
+
 	public void setStudentID(int studentID)
 	{
 		this.studentID = studentID;
 	}
 
-	public int getProfID()
+	public String getLastName()
 	{
-		return profID;
+		return lastName;
 	}
 
-	public void setProfID(int profID)
+	public void setLastName(String last)
 	{
-		this.profID = profID;
+		this.lastName = last;
+	}
+
+	public String getFirstName()
+	{
+		return firstName;
+	}
+	
+	public int getProfId() {
+		return profId;
+	}
+
+	public void setProfId(int profId) {
+		this.profId = profId;
+	}
+
+
+	public void setFirstName(String first)
+	{
+		this.firstName = first;
 	}
 
 	public String getDate()

@@ -15,73 +15,22 @@ public class Manager
 	public Manager()
 	{
 	}
-	
-	public ArrayList<Course> getCourseList()
+
+	public void addAccount(Profile p)
 	{
-		Connection conn = DBConnection.getConnection();
-		ArrayList<Course> courseList = new ArrayList<Course>();
-		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum ";
-		try
-		{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next())
-			{
-				Course c = new Course();
-				c.setCourseCode(rs.getString("coursecode"));
-				c.setSection(rs.getString("section"));
-				c.setProfessorLast(rs.getString("lname"));
-				c.setProfessorFirst(rs.getString("fname"));
-				courseList.add(c);
-			}
-		} catch (SQLException e)
-		{ // TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return courseList;
-	}
-	
-	public ArrayList<Course> getAllCourseStudent(int idnum)
-	{
-		Connection conn = DBConnection.getConnection();
-		ArrayList<Course> courseList = new ArrayList<Course>();
-		String sql ="SELECT C.coursecode, C.section, B.lname, B.fname FROM courses C, courseenrolled E, accounts A, accounts B WHERE E.idnum = ? and C.idcourse = E.idcourse and E.idnum = A.idnum and A.type = 'Student' and C.idprofessor = B.idnum";
-		try
-		{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, idnum);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next())
-			{
-				Course c = new Course();
-				c.setCourseCode(rs.getString("coursecode"));
-				c.setSection(rs.getString("section"));
-				c.setProfessorFirst(rs.getString("fname"));
-				c.setProfessorLast(rs.getString("lname"));
-				courseList.add(c);
-			}
-		} catch (SQLException e)
-		{ // TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return courseList;
-	}
-	
-	public void addRequest(Request r)
-	{
-		String sql = "INSERT INTO consultations(student,professor,date,fromtime,totime,course) "
+		String sqlacct = "INSERT INTO accounts (idnum,password,type,email,lname,fname) "
 				+ "VALUES (?,?,?,?,?,?);";
 		Connection conn = DBConnection.getConnection();
 
 		try
 		{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, r.getStudentID());
-			ps.setInt(2, r.getProfID());
-			ps.setString(3, r.getDate());
-			ps.setString(4, r.getFromTime());
-			ps.setString(5, r.getToTime());
-			ps.setString(6, r.getCourse());
+			PreparedStatement ps = conn.prepareStatement(sqlacct);
+			ps.setInt(1, p.getIdNo());
+			ps.setString(2, p.getPassword());
+			ps.setString(3, p.getType());
+			ps.setString(4, p.getEmail());
+			ps.setString(5, p.getLastName());
+			ps.setString(6, p.getFirstName());
 			ps.executeUpdate();
 			conn.close();
 			ps.close();
@@ -90,36 +39,9 @@ public class Manager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
-	
-	public ArrayList<Request> getAllStudentRequest(int idnum)
-	{
-		Connection conn = DBConnection.getConnection();
-		ArrayList<Request> reqList = new ArrayList<Request>();
-		String sql ="SELECT * FROM consultations WHERE student =?;";
-		try
-		{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, idnum);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next())
-			{
-				Request r = new Request();
-				r.setStudentID(rs.getInt("student"));
-				r.setProfID(rs.getInt("professor"));
-				r.setDate(rs.getString("date"));
-				r.setFromTime(rs.getString("fromtime"));
-				r.setToTime(rs.getString("totime"));
-				r.setCourse(rs.getString("course"));
-				reqList.add(r);
-			}
-		} catch (SQLException e)
-		{ // TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return reqList;
-	}
-	
+
 	public Profile getProfile(int idnum, String password)
 	{
 		String sql = "SELECT * from accounts where idnum=? and password=?";
@@ -151,23 +73,122 @@ public class Manager
 		return p;
 	}
 
-	
-
-	public void addAccount(Profile p)
+	public void changePassword(int idnum, String newPw)
 	{
-		String sqlacct = "INSERT INTO accounts (idnum,password,type,email,lname,fname) "
+		String sql = "UPDATE accounts SET password=? WHERE idnum=?";
+		Connection conn = DBConnection.getConnection();
+
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, newPw);
+			ps.setInt(2, idnum);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public ArrayList<Course> getCourseList()
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum ";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+
+	public ArrayList<Course> getAllCourseStudent(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT C.coursecode, C.section, B.lname, B.fname FROM courses C, courseenrolled E, accounts A, accounts B WHERE E.idnum = ? and C.idcourse = E.idcourse and E.idnum = A.idnum and A.type = 'Student' and C.idprofessor = B.idnum";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorFirst(rs.getString("fname"));
+				c.setProfessorLast(rs.getString("lname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+
+	public ArrayList<Course> getAllProfessorCourses(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, date, fromtime, totime FROM courses WHERE idprofessor = ?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setDay(rs.getString("date"));
+				c.setStartTime(rs.getString("fromtime"));
+				c.setEndTime(rs.getString("totime"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+
+	}
+
+	public void addRequest(Request r)
+	{
+		String sql = "INSERT INTO consultations(student,professor,date,fromtime,totime,course,status) "
 				+ "VALUES (?,?,?,?,?,?);";
 		Connection conn = DBConnection.getConnection();
 
 		try
 		{
-			PreparedStatement ps = conn.prepareStatement(sqlacct);
-			ps.setInt(1, p.getIdNo());
-			ps.setString(2, p.getPassword());
-			ps.setString(3, p.getType());
-			ps.setString(4, p.getEmail());
-			ps.setString(5, p.getLastName());
-			ps.setString(6, p.getFirstName());
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, r.getStudentID());
+			ps.setInt(2, r.getProfId());
+			ps.setString(3, r.getDate());
+			ps.setString(4, r.getFromTime());
+			ps.setString(5, r.getToTime());
+			ps.setString(6, r.getCourse());
+			ps.setInt(7, 0);
 			ps.executeUpdate();
 			conn.close();
 			ps.close();
@@ -177,25 +198,82 @@ public class Manager
 			e.printStackTrace();
 		}
 	}
-	
-	public void changePassword(int idnum,String pw,String newPw)
-	{
-		String sql="UPDATE accounts SET password=?, WHERE idnum=? and password =?;";
-		Connection conn = DBConnection.getConnection();
 
+	public ArrayList<Request> getAllStudentRequest(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Request> reqList = new ArrayList<Request>();
+		String sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ?;";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, idnum);
-			ps.setString(2, pw);
-			ps.executeUpdate();
-			conn.close();
-			ps.close();
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Request r = new Request();
+				r.setStudentID(rs.getInt("student"));
+				r.setDate(rs.getString("date"));
+				r.setFromTime(rs.getString("fromtime"));
+				r.setToTime(rs.getString("totime"));
+				r.setCourse(rs.getString("course"));
+				if(rs.getInt("status") == 1)
+				{
+					r.setStatus("Approved");
+				} else if (rs.getInt("status") == 2)
+						{
+					r.setStatus("Denied");
+				} else
+				{
+					r.setStatus("Pending");
+				}
+				r.setLastName("lname");
+				r.setFirstName("fname");
+				reqList.add(r);
+			}
 		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
+		{ // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return reqList;
+	}
+	
+	public ArrayList<Request> getAllProfRequest(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Request> reqList = new ArrayList<Request>();
+		String sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ?;";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Request r = new Request();
+				r.setStudentID(rs.getInt("student"));
+				r.setDate(rs.getString("date"));
+				r.setFromTime(rs.getString("fromtime"));
+				r.setToTime(rs.getString("totime"));
+				r.setCourse(rs.getString("course"));
+				if(rs.getInt("status") == 1)
+				{
+					r.setStatus("Approved");
+				} else if (rs.getInt("status") == 2)
+						{
+					r.setStatus("Denied");
+				} else
+				{
+					r.setStatus("Pending");
+				}
+				r.setLastName("lname");
+				r.setFirstName("fname");
+				reqList.add(r);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reqList;
 	}
 }

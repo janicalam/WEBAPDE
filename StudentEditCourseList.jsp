@@ -62,7 +62,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="ToChangePasswordServlet"><span
 								class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-						<li><a href="LogIn.jsp"><span
+						<li><a href="StartServlet"><span
 								class="glyphicon glyphicon-off"></span> Logout</a></li>
 					</ul></li>
 			</ul>

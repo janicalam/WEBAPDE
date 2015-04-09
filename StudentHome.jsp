@@ -57,7 +57,7 @@
                   <span class="glyphicon glyphicon-user"></span><span class = "span-custom"> ${sessionScope.profile.lastName}, ${sessionScope.profile.firstName}  </span> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="ToChangePasswordServlet" ><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                    <li><a href="Login.jsp"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
+                    <li><a href="StartServlet"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
                   </ul>
                 </li>
               </ul>
@@ -124,7 +124,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="ToStudentRequestConsultation">
-                    <strong>Request Consultation Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
+                    <strong>Request Consultation Now! <span class = "glyphicon glyphicon-arrow-right"></span></strong>
                   </a>
                 </div>
               </div>
@@ -133,7 +133,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="ToStudentViewRequest">
-                    <strong>View Requests Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
+                    <strong>View Requests Now! <span class = "glyphicon glyphicon-arrow-right"></span></strong>
                   </a>
                 </div>
               </div>
@@ -142,7 +142,7 @@
                   <h1>Consult Me</h1>
                   <p>Requesting consultations has never been this easy!</p>
                   <a class = "btn btn-info" href="ToStudentEditCourseList">
-                    <strong>Edit Course List Now! <span class = "glyphicon glyphicon-arrow-right"></span</strong>
+                    <strong>Edit Course List Now! <span class = "glyphicon glyphicon-arrow-right"></span></strong>
                   </a>
                 </div>
               </div>

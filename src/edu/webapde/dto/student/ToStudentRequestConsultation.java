@@ -2,11 +2,18 @@ package edu.webapde.dto.student;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.webapde.dto.course.Course;
+import edu.webapde.dto.profile.Profile;
+import edu.webapde.dto.profile.Request;
+import edu.webapde.managers.Manager;
 
 /**
  * Servlet implementation class ToStudentRequestConsultationServlet
@@ -28,6 +35,7 @@ public class ToStudentRequestConsultation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		request.getRequestDispatcher("StudentRequestConsultation.jsp").forward(request, response);
 	}
 

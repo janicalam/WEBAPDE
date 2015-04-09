@@ -1,11 +1,17 @@
 package edu.webapde.dto.professor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.webapde.dto.profile.Profile;
+import edu.webapde.dto.profile.Request;
+import edu.webapde.managers.Manager;
 
 /**
  * Servlet implementation class ToProfessorViewRequest
@@ -27,8 +33,12 @@ public class ToProfessorViewRequest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.removeAttribute("requestlist");
+		Profile p = (Profile)request.getSession().getAttribute("profile");
+		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo());
+		request.getSession().setAttribute("requestlist", r);
 		
-		request.getRequestDispatcher("ProfessorViewRequest.jsp").forward(request, response);
+		request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(request, response);
 	}
 
 	/**

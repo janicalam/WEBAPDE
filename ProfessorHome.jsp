@@ -54,7 +54,7 @@
                   <span class="glyphicon glyphicon-user"></span><span class = "span-custom">${sessionScope.profile.lastName}, ${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="ToProfessorChangePassword"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                    <li><a href="Login.html"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
+                    <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
                   </ul>
                 </li>
               </ul>

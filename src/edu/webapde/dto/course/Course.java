@@ -3,23 +3,22 @@ package edu.webapde.dto.course;
 public class Course
 {
 	private int idCourse;
-	private String courseCode;
-	private String section;
-	private String professorLast;
-	private String professorFirst;
-	private String day;
-	private String startTime;
-	private String endTime;
+	private String courseCode="";
+	private String section="";
+	private String professorLast="";
+	private String professorFirst="";
+	private String day="";
+	private String startTime="";
+	private String endTime="";
 
 	public Course()
 	{
 
 	}
 
-	public Course(int idCourse, String course, String section, String professorl, String professorf, String day,
+	public Course(String course, String section, String professorl, String professorf, String day,
 			String startTime, String endTime)
 	{
-		this.idCourse = idCourse;
 		this.courseCode = course;
 		this.professorLast = professorl;
 		this.professorFirst = professorf;

@@ -54,7 +54,7 @@
                   <span class="glyphicon glyphicon-user"></span><span class = "span-custom"> ${sessionScope.profile.lastName}, ${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="ToProfessorChangePassword"><span class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-                    <li><a href="Login.html"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
+                    <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-off"></span> Logout</a></li>  
                   </ul>
                 </li>
               </ul>
@@ -119,26 +119,26 @@
             <hr class = "break"/>          
             
 
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method = "post" action = "ProfessorChangePassword">
 
               <div class="form-group row">
-                <label for="firstpass" class = "control-label col-md-2">New Password:</label>
+                <label for="firstpass" class = "control-label col-md-2">Old Password:</label>
                 <div class = "col-md-3">
-                  <input type="password" class="form-control" id="firstpass" placeholder="Password">
+                  <input type="password" class="form-control" id="firstpass" name = "pass" placeholder="Password">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="newpass" class = "control-label col-md-2">New Password:</label>
                 <div class = "col-md-3">
-                  <input type="password" class="form-control" id="newpass" placeholder="New Password">
+                  <input type="password" class="form-control" id="newpass" name = "newpass" placeholder="New Password">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="confirmnewpass" class = "control-label col-md-2">Confirm New Password:</label>
                 <div class = "col-md-3">
-                  <input type="password" class="form-control" id="confirmnewpass" placeholder="Enter New Password">
+                  <input type="password" class="form-control" id="confirmnewpass" name = "confirmnewpass" placeholder="Enter New Password">
                 </div>
               </div>
 

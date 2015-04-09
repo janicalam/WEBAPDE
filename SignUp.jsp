@@ -67,12 +67,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
             <h4 class="modal-title" id="loginLabel"><span class="glyphicon glyphicon-log-in"></span> Login</h4>
           </div>
-          <form class="form-horizontal" role="form" action = "studenthome.html">
+          <form class="form-horizontal" role="form" method = "post" action = "LogInServlet">
             <div class="modal-body">
                 <div class="form-group row has-feedback"> <!-- if error add "has-errpr" -->
-                  <label class="control-label col-sm-4" for="usernametxt">Username:</label>
+                  <label class="control-label col-sm-4" for="usernametxt">Id No:</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" id="usernametxt" maxlength="20">
+                    <input type="text" class="form-control" id="usernametxt" name = "idnum" maxlength="20">
                     <!-- add this here if may error -->
                     <!-- <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span> -->
                   </div>
@@ -80,7 +80,7 @@
                 <div class="form-group row has-feedback"> <!-- if error add "has-errpr" -->
                   <label class="control-label col-sm-4" for="passtxt">Password:</label>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control" id="passtxt" maxlength="20">
+                    <input type="password" class="form-control" id="passtxt" name = "password" maxlength="20">
                     <!-- add this here if may error -->
                     <!-- <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span> -->
                   </div>
