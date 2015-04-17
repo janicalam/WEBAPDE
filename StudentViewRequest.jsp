@@ -123,12 +123,14 @@
 
 					<form class="form-horizontal" role="form">
 						<div class="form-group row">
-							<label for="coursecode" class="control-label col-md-3">Course Code:
+							<label for="profname" class="control-label col-md-3">Course Code:
 							</label>
 							<div class="col-md-5">
 								<select class="form-control" id="coursecode">
 									<option>All</option>
-									<%-- <c:forEach var="r" items="${requestlist}" varStatus="counter"> --%>
+									<c:forEach var="c" items="${enrolledCourse}" varStatus="counter">
+									<option>${c.courseCode}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -139,7 +141,9 @@
 							<div class="col-md-5">
 								<select class="form-control" id="professor">
 									<option>All</option>
-									<%-- <c:forEach var="r" items="${requestlist}" varStatus="counter"> --%>
+									<c:forEach var="c" items="${enrolledCourse}" varStatus="counter">
+									<option>${c.section}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
