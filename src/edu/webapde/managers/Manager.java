@@ -117,7 +117,7 @@ public class Manager
 	public ArrayList<String> getAllSections()
 	{
 		Connection conn = DBConnection.getConnection();
-		ArrayList<String> courseCode = new ArrayList<String>();
+		ArrayList<String> sections = new ArrayList<String>();
 		String sql = "SELECT section FROM courses GROUP BY section ORDER BY section;";
 		try
 		{
@@ -125,15 +125,14 @@ public class Manager
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 			{
-				String s = (rs.getString("coursecode"));
 				String s = (rs.getString("section"));
-				courseCode.add(s);
+				sections.add(s);
 			}
 		} catch (SQLException e)
 		{ // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return courseCode;
+		return sections;
 	}
 
 	public ArrayList<Course> getCourseList()
@@ -187,6 +186,7 @@ public class Manager
 		}
 		return courseList;
 	}
+	
 	public ArrayList<Course> getCourseListByCourse(String course)
 	{
 		Connection conn = DBConnection.getConnection();
@@ -410,8 +410,8 @@ public class Manager
 			while (rs.next())
 			{
 				String name = rs.getString("lname");
-				name.concat(", ");
-				name.concat(rs.getString("fname"));
+				name+= ", ";
+				name+=rs.getString("fname");
 				profList.add(name);
 			}
 		} catch (SQLException e)

@@ -121,12 +121,12 @@
 					<h3>Search Requests</h3>
 					<hr class="break" />
 
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action = "StudentViewRequest" method = "post">
 						<div class="form-group row">
 							<label for="profname" class="control-label col-md-3">Course
 								Code: </label>
 							<div class="col-md-5">
-								<select class="form-control" id="coursecode">
+								<select class="form-control" id="coursecode" name = "coursecode">
 									<option>All</option>
 									<c:forEach var="c" items="${enrolledCourses}"
 										varStatus="counter">
@@ -140,11 +140,11 @@
 							<label for="profname" class="control-label col-md-3">Professor:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="professor">
+								<select class="form-control" id="professor" name = "professor">
 									<option>All</option>
-									<c:forEach var="c" items="${enrolledCourses}"
+									<c:forEach var="p" items="${professors}"
 										varStatus="counter">
-										<option>${c.section}</option>
+										<option>${p}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -154,7 +154,7 @@
 							<label for="status" class="control-label col-md-3">Status:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="status">
+								<select class="form-control" id="status" name = "status">
 									<option>All</option>
 									<option>Approved</option>
 									<option>Pending</option>
