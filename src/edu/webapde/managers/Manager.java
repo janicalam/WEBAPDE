@@ -126,6 +126,7 @@ public class Manager
 			while (rs.next())
 			{
 				String s = (rs.getString("coursecode"));
+				String s = (rs.getString("section"));
 				courseCode.add(s);
 			}
 		} catch (SQLException e)
@@ -143,6 +144,84 @@ public class Manager
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+	
+	public ArrayList<Course> getCourseList(String course, String section)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses C, webapde_db.accounts B WHERE C.idprofessor = B.idnum and coursecode=? and section=?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, course);
+			ps.setString(2, section);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+	public ArrayList<Course> getCourseListByCourse(String course)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum  and coursecode=?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, course);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Course c = new Course();
+				c.setCourseCode(rs.getString("coursecode"));
+				c.setSection(rs.getString("section"));
+				c.setProfessorLast(rs.getString("lname"));
+				c.setProfessorFirst(rs.getString("fname"));
+				courseList.add(c);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseList;
+	}
+	
+	public ArrayList<Course> getCourseListBySection(String section)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses A, webapde_db.accounts B WHERE A.idprofessor = B.idnum and section=?";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, section);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 			{
@@ -268,8 +347,8 @@ public class Manager
 				{
 					r.setStatus("Pending");
 				}
-				r.setLastName("lname");
-				r.setFirstName("fname");
+				r.setLastName(rs.getString("lname"));
+				r.setFirstName(rs.getString("fname"));
 				reqList.add(r);
 			}
 		} catch (SQLException e)
@@ -307,8 +386,8 @@ public class Manager
 				{
 					r.setStatus("Pending");
 				}
-				r.setLastName("lname");
-				r.setFirstName("fname");
+				r.setLastName(rs.getString("lname"));
+				r.setFirstName(rs.getString("fname"));
 				reqList.add(r);
 			}
 		} catch (SQLException e)
@@ -316,5 +395,29 @@ public class Manager
 			e.printStackTrace();
 		}
 		return reqList;
+	}
+	
+	public ArrayList<String> getAllProfOfStudent(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<String> profList = new ArrayList<String>();
+		String sql ="SELECT B.lname,B.fname FROM accounts A,accounts B, courseenrolled E,courses C WHERE E.idnum = A.idnum  and C.idcourse =E.idcourse and C.idprofessor = B.idnum and A.idnum = ? GROUP BY b.lname, b.fname ORDER BY b.lname;";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				String name = rs.getString("lname");
+				name.concat(", ");
+				name.concat(rs.getString("fname"));
+				profList.add(name);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return profList;
 	}
 }
