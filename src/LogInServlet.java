@@ -63,8 +63,8 @@ public class LogInServlet extends HttpServlet
 				ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
 				request.getSession().setAttribute("course", c);
 				
-				ArrayList<Course> cl = new Manager().getCourseList();
-				request.getSession().setAttribute("courselist", cl);
+				/*ArrayList<Course> cl = new Manager().getCourseList();
+				request.getSession().setAttribute("courselist", cl);*/
 				
 				request.getRequestDispatcher("StudentHome.jsp").forward(
 						request, response);

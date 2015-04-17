@@ -37,12 +37,18 @@ public class ToStudentEditCourseList extends HttpServlet
 			HttpServletResponse response) throws ServletException, IOException
 	{
 		// TODO Auto-generated method stub
-		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
+		Profile p = (Profile) request.getSession().getAttribute("profile");
 		ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
-		request.getSession().setAttribute("course", c);
+		request.getSession().setAttribute("enrolledcourse", c);
 		
 		ArrayList<Course> cl = new Manager().getCourseList();
 		request.getSession().setAttribute("courselist", cl);
+		
+		ArrayList<String> sections = new Manager().getAllSections();
+		request.getSession().setAttribute("sections", sections);
+		
+		ArrayList<String> coursecode = new Manager().getAllCourseCodes();
+		request.getSession().setAttribute("coursecode", coursecode);
 
 		request.getRequestDispatcher("StudentEditCourseList.jsp").forward(
 				request, response);
