@@ -133,7 +133,8 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="c" items="${course}" varStatus="counter">
+										<c:forEach var="c" items="${enrolledcourse}"
+											varStatus="counter">
 											<tr>
 												<td>${c.courseCode}</td>
 												<td>${c.section}</td>
@@ -160,12 +161,18 @@
 						<h3>Search Course</h3>
 						<hr class="break" />
 
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" role="form" action="StudentEditCourse" method="POST">
 							<div class="form-group row">
 								<label for="coursecode" class="control-label col-md-3">Course
 									Code: </label>
 								<div class="col-md-5">
-									<input type="text" class="form-control" id="coursecode">
+									<select class="form-control" id="course" name= "course">
+										<option>All</option>
+										<c:forEach var="coursecode" items="${coursecode}"
+											varStatus="counter">
+											<option>${coursecode}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 
@@ -173,33 +180,20 @@
 								<label for="section" class="control-label col-md-3">Section:
 								</label>
 								<div class="col-md-5">
-									<select class="form-control" id="section">
+									<select class="form-control" id="section" name = "section">
 										<option>All</option>
-										<option>S17</option>
-										<option>S18</option>
-										<option>S19</option>
-										<option>S20</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group row">
-								<label for="profname" class="control-label col-md-3">Professor:
-								</label>
-								<div class="col-md-5">
-									<select class="form-control" id="professor">
-										<option>All</option>
-										<option>Mr. Solomon See</option>
-										<option>Ms. Courtney Ngo</option>
-										<option>Ms. Shirley Chu</option>
-										<option>Ms. Ethel Ong</option>
+										<c:forEach var="sections" items="${sections}"
+											varStatus="counter">
+											<option>${sections}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
 
 							<div class="form-group row">
 								<center>
-									<input type="submit" class="btn btn-info" value="Search">
+									<input type="submit" class="btn btn-info" value="Search"
+										id="search">
 								</center>
 							</div>
 						</form>
@@ -221,7 +215,8 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="courselist" items="${courselist}" varStatus="counter">
+										<c:forEach var="courselist" items="${courselist}"
+											varStatus="counter">
 											<tr>
 												<td>${courselist.courseCode}</td>
 												<td>${courselist.section}</td>
@@ -263,5 +258,34 @@
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
+
+	<script>
+		/* $("#search").click(function() {
+			function getSelectedText(elementId) {
+				var elt = document.getElementById(elementId);
+
+				if (elt.selectedIndex == -1)
+					return null;
+
+				return elt.options[elt.selectedIndex].text;
+			}
+
+			var course = getSelectedText('course');
+			var section = getSelectedText('sections');
+
+			$.ajax({
+				url : "StudentEditCourse",
+				data : {"course" : course,
+						"sections" : section},
+				method : "POST",
+				success : function(data) {
+					//alert(data);
+					$('#content p').text(data);
+					// id = data.idtodo;
+				}
+			});
+		}); */
+	</script>
+
 </body>
 </html>
