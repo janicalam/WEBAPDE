@@ -41,7 +41,7 @@ public class ToStudentViewRequest extends HttpServlet {
 		request.getSession().setAttribute("requestlist", r);
 
 		ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
-		request.getSession().setAttribute("enrolledourse", c);
+		request.getSession().setAttribute("enrolledCourses", c);
 		
 		request.getRequestDispatcher("StudentViewRequest.jsp").forward(request, response);
 	}

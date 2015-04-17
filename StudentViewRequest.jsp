@@ -123,13 +123,14 @@
 
 					<form class="form-horizontal" role="form">
 						<div class="form-group row">
-							<label for="profname" class="control-label col-md-3">Course Code:
-							</label>
+							<label for="profname" class="control-label col-md-3">Course
+								Code: </label>
 							<div class="col-md-5">
 								<select class="form-control" id="coursecode">
 									<option>All</option>
-									<c:forEach var="c" items="${enrolledCourse}" varStatus="counter">
-									<option>${c.courseCode}</option>
+									<c:forEach var="c" items="${enrolledCourses}"
+										varStatus="counter">
+										<option>${c.courseCode}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -141,8 +142,9 @@
 							<div class="col-md-5">
 								<select class="form-control" id="professor">
 									<option>All</option>
-									<c:forEach var="c" items="${enrolledCourse}" varStatus="counter">
-									<option>${c.section}</option>
+									<c:forEach var="c" items="${enrolledCourses}"
+										varStatus="counter">
+										<option>${c.section}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -190,7 +192,7 @@
 									<c:forEach var="r" items="${requestlist}" varStatus="counter">
 										<tr>
 											<td>${r.course}</td>
-											<td>${r.lastName}, ${r.firstName}</td>
+											<td>${r.lastName},${r.firstName}</td>
 											<td>${r.fromTime}-${r.toTime}</td>
 											<td>${r.status}</td>
 											<td><button type="submit" class="btn btn-default btn-xs">
