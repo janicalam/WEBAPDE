@@ -60,7 +60,7 @@ public class LogInServlet extends HttpServlet
 			request.getSession().setAttribute("profile", p);
 			if (p.getType().equals("Student"))
 			{
-				ArrayList<Course> c = new Manager().getAllCourseStudent(p.getIdNo());
+				ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
 				request.getSession().setAttribute("course", c);
 				
 				ArrayList<Course> cl = new Manager().getCourseList();
