@@ -91,7 +91,48 @@ public class Manager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+	}
+	
+	public ArrayList<String> getAllCourseCodes()
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<String> courseCode = new ArrayList<String>();
+		String sql = "SELECT coursecode FROM courses GROUP BY coursecode ORDER BY coursecode;";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				String s = (rs.getString("coursecode"));
+				courseCode.add(s);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseCode;
+	}
+	
+	public ArrayList<String> getAllSections()
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<String> courseCode = new ArrayList<String>();
+		String sql = "SELECT section FROM courses GROUP BY section ORDER BY section;";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				String s = (rs.getString("coursecode"));
+				courseCode.add(s);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return courseCode;
 	}
 
 	public ArrayList<Course> getCourseList()
@@ -119,7 +160,7 @@ public class Manager
 		return courseList;
 	}
 
-	public ArrayList<Course> getAllCourseStudent(int idnum)
+	public ArrayList<Course> getAllStudentCourses(int idnum)
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Course> courseList = new ArrayList<Course>();
