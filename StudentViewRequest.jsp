@@ -123,7 +123,7 @@
 
 					<form class="form-horizontal" role="form">
 						<div class="form-group row">
-							<label for="profname" class="control-label col-md-3">Course Code:
+							<label for="coursecode" class="control-label col-md-3">Course Code:
 							</label>
 							<div class="col-md-5">
 								<select class="form-control" id="coursecode">
