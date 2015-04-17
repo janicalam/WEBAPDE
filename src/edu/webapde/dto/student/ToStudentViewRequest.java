@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.webapde.dto.course.Course;
 import edu.webapde.dto.profile.Profile;
 import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
@@ -35,9 +36,13 @@ public class ToStudentViewRequest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.removeAttribute("requestlist");
-		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
+		Profile p = (Profile) request.getSession().getAttribute("profile");
 		ArrayList<Request> r = new Manager().getAllStudentRequest(p.getIdNo());
 		request.getSession().setAttribute("requestlist", r);
+
+		ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
+		request.getSession().setAttribute("enrolledourse", c);
+		
 		request.getRequestDispatcher("StudentViewRequest.jsp").forward(request, response);
 	}
 
