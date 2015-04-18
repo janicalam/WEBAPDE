@@ -45,7 +45,7 @@ public class StudentViewRequest extends HttpServlet {
 		String status = request.getParameter("status");
 		
 		Profile p = (Profile) request.getSession().getAttribute("profile");
-		ArrayList<Request> r = new Manager().getAllStudentRequest(p.getIdNo(), "All", "All", "All" );
+		ArrayList<Request> r = new Manager().getAllStudentRequest(p.getIdNo(), professor,coursecode, status );
 		request.getSession().setAttribute("requestlist", r);
 		
 		request.getRequestDispatcher("StudentViewRequest.jsp").forward(request, response);
