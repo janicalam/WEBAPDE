@@ -107,12 +107,12 @@
 						<h3>Search Course</h3>
 						<hr class="break" />
 
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" role="form" action = "ProfessorEditConsultation" method = "post">
 							<div class="form-group row">
 								<label for="day" class="control-label col-md-3">Course:
 								</label>
 								<div class="col-md-5">
-									<select class="form-control" id="course">
+									<select class="form-control" id="course" name = "coursecode">
 										<option>All</option>
 										<c:forEach var="c" items="${courses}" varStatus="counter">
 											<option>${c}</option>
@@ -125,9 +125,11 @@
 								<label for="day" class="control-label col-md-3">Section:
 								</label>
 								<div class="col-md-5">
-									<select class="form-control" id="section">
+									<select class="form-control" id="section" name = "section">
 										<option>All</option>
-										<option>S11</option>
+										<c:forEach var="s" items="${sections}" varStatus="counter">
+											<option>${s}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -135,7 +137,7 @@
 							<div class="form-group row">
 								<label for="day" class="control-label col-md-3">Day: </label>
 								<div class="col-md-5">
-									<select class="form-control" id="day">
+									<select class="form-control" id="day" name = "day">
 										<option>All</option>
 										<option>Monday</option>
 										<option>Tuesday</option>
@@ -152,7 +154,7 @@
 								<label for="timestart" class="control-label col-md-3">Time
 									Start: </label>
 								<div class="col-md-5">
-									<select class="form-control" id="timestart">
+									<select class="form-control" id="timestart" name = "fromTime">
 										<option>7:00</option>
 										<option>7:30</option>
 										<option>8:00</option>
@@ -183,7 +185,7 @@
 								<label for="timeend" class="control-label col-md-3">Time
 									End: </label>
 								<div class="col-md-5">
-									<select class="form-control" id="timeend">
+									<select class="form-control" id="timeend" name = "toTime">
 										<option>7:00</option>
 										<option>7:30</option>
 										<option>8:00</option>
@@ -236,7 +238,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="courses" items="${courses}"
+										<c:forEach var="courses" items="${courselist}"
 											varStatus="counter">
 											<tr>
 												<td>${courses.courseCode}</td>

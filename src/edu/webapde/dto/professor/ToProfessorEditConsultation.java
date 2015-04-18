@@ -35,8 +35,14 @@ public class ToProfessorEditConsultation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
-		ArrayList<Course> c = new Manager().getAllProfessorCourses(p.getIdNo());
+		ArrayList<String> c = new Manager().getAllCourseCodes();
 		request.getSession().setAttribute("courses", c);
+		
+		ArrayList<String> s = new Manager().getAllSections();
+		request.getSession().setAttribute("sections", s);
+		
+		ArrayList<Course> cl = new Manager().getAllProfessorCourses(p.getIdNo());
+		request.getSession().setAttribute("courselist", cl);
 		
 		ArrayList<Request> notif = new Manager().getAllProfNotif(p.getIdNo());
 		request.getSession().setAttribute("notif", notif);
