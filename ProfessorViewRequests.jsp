@@ -59,7 +59,7 @@
 							${sessionScope.profile.lastName},
 							${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="ToProfessorChangePassword"><span
+						<li><a href="ToChangePasswordServlet"><span
 								class="glyphicon glyphicon-cog"></span> Change Password</a></li>
 						<li><a href="LogIn.jsp"><span
 								class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -76,28 +76,14 @@
 					<ul class="dropdown-menu notif" role="menu">
 						<!-- notifications content -->
 						<div class="notif-wrapper">
-
-							<a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Miguel Sietereales · 2 hours ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Angeline Tan · 1 day ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Janica Lam · 2 days ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Marcus Ramos · 4 days ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a>
+							<c:forEach var="n" items="${notif}" varStatus="counter">
+								<a class="content" href="ToProfessorViewRequest">
+									<div class="notif-item">
+										<h4 class="item-text">${n.lastName },${n.firstName }</h4>
+										<p class="item-details">Sent a Request!</p>
+									</div>
+								</a>
+							</c:forEach>
 
 						</div>
 						<!-- notifications content end -->
@@ -120,11 +106,13 @@
 					<h3>Search Requests</h3>
 					<hr class="break" />
 
-					<form class="form-horizontal" role="form" action = "ProfessorViewRequest" method = "post">
+					<form class="form-horizontal" role="form"
+						action="ProfessorViewRequest" method="post">
 						<div class="form-group row">
-							<label for="profname" class="control-label col-md-3">Course Code:</label>
+							<label for="profname" class="control-label col-md-3">Course
+								Code:</label>
 							<div class="col-md-5">
-								<select class="form-control" id="coursecode" name = "coursecode">
+								<select class="form-control" id="coursecode" name="coursecode">
 									<option>All</option>
 									<c:forEach var="c" items="${courses}" varStatus="counter">
 										<option>${c.courseCode }</option>
@@ -137,7 +125,7 @@
 							<label for="profname" class="control-label col-md-3">Student
 								Name: </label>
 							<div class="col-md-5">
-								<select class="form-control" id="student" name = "student">
+								<select class="form-control" id="student" name="student">
 									<option>All</option>
 									<c:forEach var="s" items="${students}" varStatus="counter">
 										<option>${s}</option>
@@ -150,7 +138,7 @@
 							<label for="status" class="control-label col-md-3">Status:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="status" name = "status">
+								<select class="form-control" id="status" name="status">
 									<option>All</option>
 									<option>Approved</option>
 									<option>Pending</option>
@@ -185,7 +173,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="r" items="${viewrequestlist}" varStatus="counter">
+									<c:forEach var="r" items="${viewrequestlist}"
+										varStatus="counter">
 										<tr>
 											<td>${r.course}</td>
 											<td>${r.lastName},${r.firstName}</td>

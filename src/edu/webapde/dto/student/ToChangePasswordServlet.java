@@ -37,6 +37,7 @@ public class ToChangePasswordServlet extends HttpServlet {
 		Profile p = (Profile) request.getSession().getAttribute("profile");
 		ArrayList<Request> notif = new Manager().getAllStudentNotif(p.getIdNo());
 		request.getSession().setAttribute("notif", notif);
+		
 		request.getRequestDispatcher("StudentChangePassword.jsp").forward(request, response);
 	}
 
