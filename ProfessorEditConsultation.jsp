@@ -34,7 +34,7 @@
 			<!-- responsive toggle button end -->
 
 			<!-- software name start -->
-			<a href= "ProfessorHome.jsp " class="navbar-brand span-custom "
+			<a href="ProfessorHome.jsp " class="navbar-brand span-custom "
 				style="padding-top: 13px"> <span
 				class="glyphicon glyphicon-search"></span> Consult.<span class="red">Me</span>
 			</a>
@@ -58,7 +58,7 @@
 						class="glyphicon glyphicon-user"></span><span class="span-custom">${sessionScope.profile.lastName},
 							${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="ToProfessorChangePassword"><span
+						<li><a href="ToChangePasswordServlet"><span
 								class="glyphicon glyphicon-cog"></span> Change Password</a></li>
 						<li><a href="LogIn.jsp"><span
 								class="glyphicon glyphicon-off"></span> Logout</a></li>
@@ -75,28 +75,14 @@
 					<ul class="dropdown-menu notif" role="menu">
 						<!-- notifications content -->
 						<div class="notif-wrapper">
-
-							<a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Miguel Sietereales · 2 hours ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Angeline Tan · 1 day ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Janica Lam · 2 days ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a> <a class="content" href="#">
-								<div class="notif-item">
-									<h4 class="item-text">Marcus Ramos · 4 days ago</h4>
-									<p class="item-details">Requested for consultation!</p>
-								</div>
-							</a>
+							<c:forEach var="n" items="${notif}" varStatus="counter">
+								<a class="content" href="ToProfessorViewRequest">
+									<div class="notif-item">
+										<h4 class="item-text">${n.lastName },${n.firstName }</h4>
+										<p class="item-details">Sent a Request!</p>
+									</div>
+								</a>
+							</c:forEach>
 
 						</div>
 						<!-- notifications content end -->
@@ -123,7 +109,8 @@
 
 						<form class="form-horizontal" role="form">
 							<div class="form-group row">
-								<label for="day" class="control-label col-md-3">Course: </label>
+								<label for="day" class="control-label col-md-3">Course:
+								</label>
 								<div class="col-md-5">
 									<select class="form-control" id="course">
 										<option>All</option>
@@ -135,7 +122,8 @@
 							</div>
 
 							<div class="form-group row">
-								<label for="day" class="control-label col-md-3">Section: </label>
+								<label for="day" class="control-label col-md-3">Section:
+								</label>
 								<div class="col-md-5">
 									<select class="form-control" id="section">
 										<option>All</option>

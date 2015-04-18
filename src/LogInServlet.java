@@ -50,8 +50,9 @@ public class LogInServlet extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
-		if (session != null) {
-		    session.invalidate();
+		if (session != null)
+		{
+			session.invalidate();
 		}
 		int idnum = Integer.parseInt(request.getParameter("idnum"));
 		String password = request.getParameter("password");
@@ -61,20 +62,26 @@ public class LogInServlet extends HttpServlet
 			request.getSession().setAttribute("profile", p);
 			if (p.getType().equals("Student"))
 			{
-				ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());
+				ArrayList<Course> c = new Manager().getAllStudentCourses(p
+						.getIdNo());
 				request.getSession().setAttribute("course", c);
-				
+
 				ArrayList<Course> cl = new Manager().getCourseList();
 				request.getSession().setAttribute("courselist", cl);
-				
-				ArrayList<Request> notif = new Manager().getAllStudentNotif(p.getIdNo());
+
+				ArrayList<Request> notif = new Manager().getAllStudentNotif(p
+						.getIdNo());
 				request.getSession().setAttribute("notif", notif);
-				
+
 				request.getRequestDispatcher("StudentHome.jsp").forward(
 						request, response);
-				
+
 			} else
 			{
+				ArrayList<Request> notif = new Manager().getAllProfNotif(p
+						.getIdNo());
+				request.getSession().setAttribute("notif", notif);
+
 				request.getRequestDispatcher("ProfessorHome.jsp").forward(
 						request, response);
 			}

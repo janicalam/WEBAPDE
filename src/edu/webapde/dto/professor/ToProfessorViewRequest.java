@@ -39,6 +39,9 @@ public class ToProfessorViewRequest extends HttpServlet {
 		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(), "All", "All", "All");
 		request.getSession().setAttribute("viewrequestlist", r);
 		
+		ArrayList<Request> notif = new Manager().getAllProfNotif(p.getIdNo());
+		request.getSession().setAttribute("notif", notif);
+		
 		ArrayList<String> s = new Manager().getAllStudentOfProf(p.getIdNo());
 		request.getSession().setAttribute("students", s);
 		

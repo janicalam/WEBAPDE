@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.webapde.dto.course.Course;
 import edu.webapde.dto.profile.Profile;
+import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
 
 /**
@@ -36,6 +37,9 @@ public class ToProfessorEditConsultation extends HttpServlet {
 		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
 		ArrayList<Course> c = new Manager().getAllProfessorCourses(p.getIdNo());
 		request.getSession().setAttribute("courses", c);
+		
+		ArrayList<Request> notif = new Manager().getAllProfNotif(p.getIdNo());
+		request.getSession().setAttribute("notif", notif);
 
 		request.getRequestDispatcher("ProfessorEditConsultation.jsp").forward(request, response);
 	}
