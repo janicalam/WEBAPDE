@@ -126,7 +126,7 @@
 							<label for="coursecode" class="control-label col-md-3">Course
 								Code: </label>
 							<div class="col-md-5">
-								<select class="form-control" id="coursecode">
+								<select class="form-control" id="coursecode" name = "coursecode">
 									<option>All</option>
 									<c:forEach var="c" items="${enrolledCourses}"
 										varStatus="counter">
@@ -140,7 +140,7 @@
 							<label for="profname" class="control-label col-md-3">Professor:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="professor">
+								<select class="form-control" id="professor" name = "professor">
 									<option>All</option>
 									<c:forEach var="p" items="${professors}" varStatus="counter">
 										<option>${p }</option>
@@ -153,7 +153,7 @@
 							<label for="status" class="control-label col-md-3">Status:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="status">
+								<select class="form-control" id="status" name = "status">
 									<option>All</option>
 									<option>Approved</option>
 									<option>Pending</option>
