@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `webapde_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `webapde_db`;
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: webapde_db
+-- Host: localhost    Database: webapde_db
 -- ------------------------------------------------------
--- Server version	5.6.19
+-- Server version	5.6.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -91,7 +89,7 @@ CREATE TABLE `consultations` (
   `studentRemark` varchar(1000) DEFAULT NULL,
   `facultyRemark` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`consultationid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +98,7 @@ CREATE TABLE `consultations` (
 
 LOCK TABLES `consultations` WRITE;
 /*!40000 ALTER TABLE `consultations` DISABLE KEYS */;
-INSERT INTO `consultations` VALUES (1,11347120,10811111,'2015-02-25','01:00:00','01:30:00','OBJECTP','Pending',NULL,NULL),(2,11335172,10711111,'2015-03-19','03:00:00','03:30:00','WEBAPDE','Pending',NULL,NULL),(3,11347120,10711111,'2015-03-19','01:30:00','03:00:00','WEBAPDE','Approved',NULL,NULL);
+INSERT INTO `consultations` VALUES (1,11347120,10811111,'2015-02-25','01:00:00','01:30:00','OPERSYS','Pending',NULL,NULL),(2,11335172,10811111,'2015-03-19','03:00:00','03:30:00','WEBAPDE','Pending',NULL,NULL),(3,11347120,10811111,'2015-03-19','01:30:00','03:00:00','SPSWENG','Approved',NULL,NULL),(4,11347120,10711111,'2015-03-22','03:00:00','03:00:00','TREDTWO','Approved',NULL,NULL);
 /*!40000 ALTER TABLE `consultations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-18 18:50:41
+-- Dump completed on 2015-04-18 19:32:39
