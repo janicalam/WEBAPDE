@@ -33,7 +33,7 @@
           <!-- responsive toggle button end -->
 
           <!-- software name start -->
-          <a href="LogInServlet" class="navbar-brand span-custom " style="padding-top: 13px">
+          <a href="ProfessorHome.jsp" class="navbar-brand span-custom " style="padding-top: 13px">
             <span class="glyphicon glyphicon-search"></span>
             Consult.<span class="red">Me</span>
           </a>
