@@ -34,7 +34,7 @@
 			<!-- responsive toggle button end -->
 
 			<!-- software name start -->
-			<a href="LogInServlet" class="navbar-brand span-custom "
+			<a href="ProfessorHome.jsp" class="navbar-brand span-custom "
 				style="padding-top: 13px"> <span
 				class="glyphicon glyphicon-search"></span> Consult.<span class="red">Me</span>
 			</a>
@@ -122,10 +122,14 @@
 
 					<form class="form-horizontal" role="form">
 						<div class="form-group row">
-							<label for="coursecode" class="control-label col-md-3">Course
-								Code: </label>
+							<label for="profname" class="control-label col-md-3">Course Code:</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="coursecode">
+								<select class="form-control" id="coursecode" name = "coursecode">
+									<option>All</option>
+									<c:forEach var="r" items="${requestlist}" varStatus="counter">
+										<option>${r.course }</option>
+									</c:forEach>
+								</select>
 							</div>
 						</div>
 
@@ -133,11 +137,11 @@
 							<label for="profname" class="control-label col-md-3">Student
 								Name: </label>
 							<div class="col-md-5">
-								<select class="form-control" id="professor">
+								<select class="form-control" id="student" name = "student">
 									<option>All</option>
-									<option>Angeline Tan</option>
-									<option>Janica Lam</option>
-									<option>Miguel Sietereales</option>
+									<c:forEach var="r" items="${requestlist}" varStatus="counter">
+										<option>${r.lastName},${r.firstName}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -146,12 +150,11 @@
 							<label for="status" class="control-label col-md-3">Status:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="status">
+								<select class="form-control" id="status" name = "status">
 									<option>All</option>
 									<option>Approved</option>
 									<option>Pending</option>
 									<option>Rejected</option>
-									<option>Canceled</option>
 								</select>
 							</div>
 						</div>
