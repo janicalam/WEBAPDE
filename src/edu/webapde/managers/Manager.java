@@ -438,7 +438,7 @@ public class Manager
 		else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by student
 		{
 			name=student.split(", ");
-			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum;";
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum;";
 		}
 		else if(student.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by course
 			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ? and C.course = ?;";
