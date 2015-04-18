@@ -78,27 +78,15 @@
 						<!-- notifications content -->
 						<div class="notif-wrapper">
 
-							<a class="content" href="ToStudentViewRequest">
-								<div class="notif-item">
-									<h4 class="item-text">Mr. Luis Dery · 1 day ago</h4>
-									<p class="item-details">Accepted your consultation request!</p>
-								</div>
-							</a> <a class="content" href="ToStudentViewRequest">
-								<div class="notif-item">
-									<h4 class="item-text">Ms. Shirley Chu · 1 day ago</h4>
-									<p class="item-details">Rejected your consultation request!</p>
-								</div>
-							</a> <a class="content" href="ToStudentViewRequest">
-								<div class="notif-item">
-									<h4 class="item-text">Ms. Solomon See · 2 days ago</h4>
-									<p class="item-details">Rejected your consultation request!</p>
-								</div>
-							</a> <a class="content" href="ToStudentViewRequest">
-								<div class="notif-item">
-									<h4 class="item-text">Ms. Ethel Ong · 4 days ago</h4>
-									<p class="item-details">Rejected your consultation request!</p>
-								</div>
-							</a>
+							<c:forEach var="n" items="${notif}" varStatus="counter">
+								<a class="content" href="ToStudentViewRequest">
+									<div class="notif-item">
+										<h4 class="item-text">${n.lastName }, ${n.firstName } · ${n.course }</h4>
+										<p class="item-details">${n.status } your consultation
+											request!</p>
+									</div>
+								</a>
+							</c:forEach>
 
 						</div>
 						<!-- notifications content end -->

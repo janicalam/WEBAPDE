@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import edu.webapde.dto.course.Course;
 import edu.webapde.dto.profile.Profile;
+import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
 
 /**
@@ -65,6 +66,9 @@ public class LogInServlet extends HttpServlet
 				
 				ArrayList<Course> cl = new Manager().getCourseList();
 				request.getSession().setAttribute("courselist", cl);
+				
+				ArrayList<Request> notif = new Manager().getAllStudentNotif(p.getIdNo());
+				request.getSession().setAttribute("notif", notif);
 				
 				request.getRequestDispatcher("StudentHome.jsp").forward(
 						request, response);
