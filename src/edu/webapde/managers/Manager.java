@@ -324,7 +324,7 @@ public class Manager
 			ps.setString(4, r.getFromTime());
 			ps.setString(5, r.getToTime());
 			ps.setString(6, r.getCourse());
-			ps.setInt(7, 0);
+			ps.setString(7, "Pending");
 			ps.executeUpdate();
 			conn.close();
 			ps.close();
@@ -610,5 +610,30 @@ public class Manager
 			e.printStackTrace();
 		}
 		return reqList;
+	}
+	
+	public void addProfCourse(int idnum, String course, String section, String day,String fromtime,String totime)
+	{
+		String sql = "INSERT INTO unavailablehours(idnum,course,section,day,fromtime,totime)"
+				+ "VALUES (?,?,?,?,?,?);";
+		Connection conn = DBConnection.getConnection();
+
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ps.setString(2, course);
+			ps.setString(3, section);
+			ps.setString(4, day);
+			ps.setString(5, fromtime);
+			ps.setString(6, totime);
+			ps.executeUpdate();
+			conn.close();
+			ps.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
