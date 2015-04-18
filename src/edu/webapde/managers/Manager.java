@@ -586,4 +586,29 @@ public class Manager
 		}
 		return reqList;
 	}
+	
+	public ArrayList<Request> getAllProfNotif(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Request> reqList = new ArrayList<Request>();
+		String sql = "SELECT S.lname,S.fname, status from accounts P,accounts S, consultations C where (status ='Pending' or status ='Cancelled') and P.idnum =? and S.idnum = C.student ORDER BY consultationid DESC";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Request r = new Request();
+				r.setLastName(rs.getString("lname"));
+				r.setFirstName(rs.getString("fname"));
+				r.setStatus(rs.getString("status"));
+				reqList.add(r);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reqList;
+	}
 }
