@@ -614,16 +614,16 @@ public class Manager
 	
 	public void addProfCourse(int idnum, String course, String section, String day,String fromtime,String totime)
 	{
-		String sql = "INSERT INTO unavailablehours(idnum,course,section,day,fromtime,totime)"
+		String sql = "INSERT INTO courses(coursecode,section,idprofessor,day,fromtime,totime)"
 				+ "VALUES (?,?,?,?,?,?);";
 		Connection conn = DBConnection.getConnection();
 
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, idnum);
-			ps.setString(2, course);
-			ps.setString(3, section);
+			ps.setString(1, course);
+			ps.setString(2, section);
+			ps.setInt(3, idnum);
 			ps.setString(4, day);
 			ps.setString(5, fromtime);
 			ps.setString(6, totime);
