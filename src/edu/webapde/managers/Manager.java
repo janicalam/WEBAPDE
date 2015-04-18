@@ -538,6 +538,28 @@ public class Manager
 		}
 		return profList;
 	}
-	
+	public ArrayList<String> getAllStudentOfProf(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<String> studList = new ArrayList<String>();
+		String sql ="SELECT S.lname,S.fname FROM accounts S,accounts P, courseenrolled E,courses C WHERE C.idprofessor = P.idnum  and C.idcourse =E.idcourse and E.idnum = S.idnum and P.idnum = ? GROUP BY S.lname, S.fname ORDER BY S.lname;";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				String name = rs.getString("lname");
+				name+= ", ";
+				name+=rs.getString("fname");
+				studList.add(name);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return studList;
+	}
 	
 }
