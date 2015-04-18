@@ -35,7 +35,7 @@
 			<!-- responsive toggle button end -->
 
 			<!-- software name start -->
-			<a href="StudentHome.html" class="navbar-brand span-custom "
+			<a href="StudentHome.jsp" class="navbar-brand span-custom "
 				style="padding-top: 13px"> <span
 				class="glyphicon glyphicon-search"></span> Consult.<span class="red">Me</span>
 			</a>
@@ -45,10 +45,10 @@
 		<!-- link pages start -->
 		<ul class="collapse navbar-collapse nav navbar-nav nav-opt-custom"
 			id="links">
-			<li><a href="StudentEditCourseList.html">Edit Course List</a></li>
-			<li><a href="StudentRequestConsultation.html">Request
+			<li><a href="ToStudentEditCourseList">Edit Course List</a></li>
+			<li><a href="ToStudentRequestConsultation">Request
 					Consultation</a></li>
-			<li><a href="StudentViewRequest.html">View Requests</a></li>
+			<li><a href="ToStudentViewRequest">View Requests</a></li>
 		</ul>
 		<!-- link pages end -->
 
@@ -58,11 +58,12 @@
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <span
 						class="glyphicon glyphicon-user"></span><span class="span-custom">
-							Miguel Sietereales</span> <span class="caret"></span></a>
+							${sessionScope.profile.lastName},
+							${sessionScope.profile.firstName}</span> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="StudentChangePassword.html"><span
+						<li><a href="ToChangePasswordServlet"><span
 								class="glyphicon glyphicon-cog"></span> Change Password</a></li>
-						<li><a href="Login.html"><span
+						<li><a href="StartServlet"><span
 								class="glyphicon glyphicon-off"></span> Logout</a></li>
 					</ul></li>
 			</ul>
@@ -78,22 +79,22 @@
 						<!-- notifications content -->
 						<div class="notif-wrapper">
 
-							<a class="content" href="StudentViewRequest.html">
+							<a class="content" href="ToStudentViewRequest">
 								<div class="notif-item">
 									<h4 class="item-text">Mr. Luis Dery · 1 day ago</h4>
 									<p class="item-details">Accepted your consultation request!</p>
 								</div>
-							</a> <a class="content" href="StudentViewRequest.html">
+							</a> <a class="content" href="ToStudentViewRequest">
 								<div class="notif-item">
 									<h4 class="item-text">Ms. Shirley Chu · 1 day ago</h4>
 									<p class="item-details">Rejected your consultation request!</p>
 								</div>
-							</a> <a class="content" href="StudentViewRequest.html">
+							</a> <a class="content" href="ToStudentViewRequest">
 								<div class="notif-item">
 									<h4 class="item-text">Ms. Solomon See · 2 days ago</h4>
 									<p class="item-details">Rejected your consultation request!</p>
 								</div>
-							</a> <a class="content" href="StudentViewRequest.html">
+							</a> <a class="content" href="ToStudentViewRequest">
 								<div class="notif-item">
 									<h4 class="item-text">Ms. Ethel Ong · 4 days ago</h4>
 									<p class="item-details">Rejected your consultation request!</p>
