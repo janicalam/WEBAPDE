@@ -133,7 +133,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="c" items="${enrolledcourse}"
+										<c:forEach var="c" items="${enrolledCourses}"
 											varStatus="counter">
 											<tr>
 												<td>${c.courseCode}</td>
@@ -168,9 +168,9 @@
 								<div class="col-md-5">
 									<select class="form-control" id="course" name= "course">
 										<option>All</option>
-										<c:forEach var="coursecode" items="${coursecode}"
+										<c:forEach var="c" items="${coursecode}"
 											varStatus="counter">
-											<option>${coursecode}</option>
+											<option>${c}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -182,9 +182,9 @@
 								<div class="col-md-5">
 									<select class="form-control" id="section" name = "section">
 										<option>All</option>
-										<c:forEach var="sections" items="${sections}"
+										<c:forEach var="s" items="${sections}"
 											varStatus="counter">
-											<option>${sections}</option>
+											<option>${s}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -218,13 +218,14 @@
 										<c:forEach var="courselist" items="${courselist}"
 											varStatus="counter">
 											<tr>
+											<form action = "add">
 												<td>${courselist.courseCode}</td>
 												<td>${courselist.section}</td>
 												<td>${courselist.professorLast},${courselist.professorFirst}</td>
 												<td><button type="submit"
 														class="btn btn-default btn-xs">
 														<span class="glyphicon glyphicon-ok"></span> Add
-													</button></td>
+													</button> </form></td>
 											</tr>
 										</c:forEach>
 									</tbody>

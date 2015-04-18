@@ -121,14 +121,17 @@
 					<h3>Search Requests</h3>
 					<hr class="break" />
 
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action = "StudentViewRequest" method = "post">
 						<div class="form-group row">
-							<label for="coursecode" class="control-label col-md-3">Course Code:
-							</label>
+							<label for="profname" class="control-label col-md-3">Course
+								Code: </label>
 							<div class="col-md-5">
-								<select class="form-control" id="coursecode">
+								<select class="form-control" id="coursecode" name = "coursecode">
 									<option>All</option>
-									<%-- <c:forEach var="r" items="${requestlist}" varStatus="counter"> --%>
+									<c:forEach var="c" items="${enrolledCourses}"
+										varStatus="counter">
+										<option>${c.courseCode}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -137,9 +140,12 @@
 							<label for="profname" class="control-label col-md-3">Professor:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="professor">
+								<select class="form-control" id="professor" name = "professor">
 									<option>All</option>
-									<%-- <c:forEach var="r" items="${requestlist}" varStatus="counter"> --%>
+									<c:forEach var="p" items="${professors}"
+										varStatus="counter">
+										<option>${p}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -148,7 +154,7 @@
 							<label for="status" class="control-label col-md-3">Status:
 							</label>
 							<div class="col-md-5">
-								<select class="form-control" id="status">
+								<select class="form-control" id="status" name = "status">
 									<option>All</option>
 									<option>Approved</option>
 									<option>Pending</option>
@@ -186,7 +192,7 @@
 									<c:forEach var="r" items="${requestlist}" varStatus="counter">
 										<tr>
 											<td>${r.course}</td>
-											<td>${r.lastName}, ${r.firstName}</td>
+											<td>${r.lastName},${r.firstName}</td>
 											<td>${r.fromTime}-${r.toTime}</td>
 											<td>${r.status}</td>
 											<td><button type="submit" class="btn btn-default btn-xs">

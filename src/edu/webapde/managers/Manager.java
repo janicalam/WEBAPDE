@@ -186,6 +186,7 @@ public class Manager
 		}
 		return courseList;
 	}
+	
 	public ArrayList<Course> getCourseListByCourse(String course)
 	{
 		Connection conn = DBConnection.getConnection();
@@ -449,8 +450,8 @@ public class Manager
 			while (rs.next())
 			{
 				String name = rs.getString("lname");
-				name.concat(", ");
-				name.concat(rs.getString("fname"));
+				name+= ", ";
+				name+=rs.getString("fname");
 				profList.add(name);
 			}
 		} catch (SQLException e)
