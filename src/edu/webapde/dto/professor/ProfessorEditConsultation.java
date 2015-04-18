@@ -40,9 +40,17 @@ public class ProfessorEditConsultation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Profile p = (Profile) request.getSession().getAttribute("profile");// sessionScope.profile;
+		String coursecode = request.getParameter("coursecode");
+		String section = request.getParameter("section");
+		String day = request.getParameter("day");
+		String fromTime = request.getParameter("fromTime");
+		String toTime = request.getParameter("toTime");
+		Profile p = (Profile) request.getSession().getAttribute("profile");
+		
+		new Manager().addProfCourse(p.getIdNo(), coursecode, section, day, fromTime, toTime);
+		
 		ArrayList<Course> c = new Manager().getAllProfessorCourses(p.getIdNo());
-		request.getSession().setAttribute("courses", c);
+		request.getSession().setAttribute("courselist", c);
 
 		request.getRequestDispatcher("ProfessorEditConsultation.jsp").forward(request, response);
 	}
