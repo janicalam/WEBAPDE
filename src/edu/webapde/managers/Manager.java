@@ -117,7 +117,7 @@ public class Manager
 	public ArrayList<String> getAllSections()
 	{
 		Connection conn = DBConnection.getConnection();
-		ArrayList<String> courseCode = new ArrayList<String>();
+		ArrayList<String> sections = new ArrayList<String>();
 		String sql = "SELECT section FROM courses GROUP BY section ORDER BY section;";
 		try
 		{
@@ -125,15 +125,14 @@ public class Manager
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 			{
-				String s = (rs.getString("coursecode"));
 				String s = (rs.getString("section"));
-				courseCode.add(s);
+				sections.add(s);
 			}
 		} catch (SQLException e)
 		{ // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return courseCode;
+		return sections;
 	}
 
 	public ArrayList<Course> getCourseList()
@@ -239,7 +238,7 @@ public class Manager
 		return courseList;
 	}
 
-	public ArrayList<Course> getAllStudentCourses(int idnum)
+	public ArrayList<Course> getAllStudentCourses(int idnum)//get all coursesenrolled by a student
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Course> courseList = new ArrayList<Course>();
@@ -319,15 +318,73 @@ public class Manager
 		}
 	}
 
-	public ArrayList<Request> getAllStudentRequest(int idnum)
+	public ArrayList<Request> getAllStudentRequest(int idnum,String prof, String course,String status)
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Request> reqList = new ArrayList<Request>();
-		String sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ?;";
+		String sql="";
+		String name[]= new String[2];
+		if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ?;";
+		else if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All")) //search by status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ? and C.status =?;";
+		else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by prof
+		{
+			name=prof.split(", ");
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum;";
+		}
+		else if(prof.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by course
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ? and C.course = ?;";
+		else if(prof.equalsIgnoreCase("All"))//search by course and status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.professor = A.idnum  and student = ? and C.status =? and C.course = ?;";
+		else if(status.equalsIgnoreCase("All"))//search by prof and course
+		{
+			name=prof.split(", ");
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum and C.course = ?;";
+		}
+		else if(course.equalsIgnoreCase("All"))//search by prof and status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum and C.status = ?;";
+		else
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum and C.status = ? and C.course =?;";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, idnum);
+			if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All"))
+				ps.setString(2, status);
+			else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+			}
+			else if(prof.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, course);
+			}
+			else if(prof.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, status);
+				ps.setString(3, course);
+			}
+			else if(status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, course);
+			}
+			else if(course.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, status);
+			}
+			else
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, status);
+				ps.setString(5, course);
+			}
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 			{
@@ -337,16 +394,7 @@ public class Manager
 				r.setFromTime(rs.getString("fromtime"));
 				r.setToTime(rs.getString("totime"));
 				r.setCourse(rs.getString("course"));
-				if(rs.getInt("status") == 1)
-				{
-					r.setStatus("Approved");
-				} else if (rs.getInt("status") == 2)
-						{
-					r.setStatus("Denied");
-				} else
-				{
-					r.setStatus("Pending");
-				}
+				r.setStatus(rs.getString("status"));
 				r.setLastName(rs.getString("lname"));
 				r.setFirstName(rs.getString("fname"));
 				reqList.add(r);
@@ -376,16 +424,7 @@ public class Manager
 				r.setFromTime(rs.getString("fromtime"));
 				r.setToTime(rs.getString("totime"));
 				r.setCourse(rs.getString("course"));
-				if(rs.getInt("status") == 1)
-				{
-					r.setStatus("Approved");
-				} else if (rs.getInt("status") == 2)
-						{
-					r.setStatus("Denied");
-				} else
-				{
-					r.setStatus("Pending");
-				}
+				r.setStatus(rs.getString("status"));
 				r.setLastName(rs.getString("lname"));
 				r.setFirstName(rs.getString("fname"));
 				reqList.add(r);
@@ -420,4 +459,6 @@ public class Manager
 		}
 		return profList;
 	}
+	
+	
 }
