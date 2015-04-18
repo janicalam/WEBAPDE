@@ -121,7 +121,7 @@
 					<h3>Search Requests</h3>
 					<hr class="break" />
 
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action = "StudentViewRequest" method = "post">
 						<div class="form-group row">
 							<label for="coursecode" class="control-label col-md-3">Course
 								Code: </label>
@@ -194,7 +194,7 @@
 											<td>${r.lastName}, ${r.firstName}</td>
 											<td>${r.date}</td>
 											<td>${r.fromTime} - ${r.toTime}</td>
-											<td>${r.statuse}</td>
+											<td>${r.status}</td>
 											<td><button type="submit" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-remove"></span> Cancel
 												</button></td>
