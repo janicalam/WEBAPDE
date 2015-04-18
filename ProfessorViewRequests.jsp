@@ -120,13 +120,13 @@
 					<h3>Search Requests</h3>
 					<hr class="break" />
 
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action = "ProfessorViewRequest" method = "post">
 						<div class="form-group row">
 							<label for="profname" class="control-label col-md-3">Course Code:</label>
 							<div class="col-md-5">
 								<select class="form-control" id="coursecode" name = "coursecode">
 									<option>All</option>
-									<c:forEach var="r" items="${requestlist}" varStatus="counter">
+									<c:forEach var="r" items="${viewrequestlist}" varStatus="counter">
 										<option>${r.course }</option>
 									</c:forEach>
 								</select>

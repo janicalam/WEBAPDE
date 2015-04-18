@@ -14,16 +14,16 @@ import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
 
 /**
- * Servlet implementation class ToProfessorViewRequest
+ * Servlet implementation class ProfessorViewRequest
  */
-@WebServlet("/ToProfessorViewRequest")
-public class ToProfessorViewRequest extends HttpServlet {
+@WebServlet("/ProfessorViewRequest")
+public class ProfessorViewRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ToProfessorViewRequest() {
+    public ProfessorViewRequest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +33,6 @@ public class ToProfessorViewRequest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.removeAttribute("requestlist");
-		Profile p = (Profile)request.getSession().getAttribute("profile");
-		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(), "All", "All", "All");
-		request.getSession().setAttribute("viewrequestlist", r);
-		
-		ArrayList<Request> rl = new Manager().getAllProfRequest(p.getIdNo(), "All", "All", "All");
-		request.getSession().setAttribute("requestlist", rl);
-		
-		
-		
-		request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(request, response);
 	}
 
 	/**
@@ -51,6 +40,15 @@ public class ToProfessorViewRequest extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String coursecode = request.getParameter("coursecode");
+		String student = request.getParameter("student");
+		String status = request.getParameter("status");
+		
+		Profile p = (Profile)request.getSession().getAttribute("profile");
+		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(), student, coursecode, status);
+		request.getSession().setAttribute("viewrequestlist", r);
+		
+		request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(request, response);
 	}
 
 }
