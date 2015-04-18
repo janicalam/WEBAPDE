@@ -562,4 +562,28 @@ public class Manager
 		return studList;
 	}
 	
+	public ArrayList<Request> getAllStudentNotif(int idnum)
+	{
+		Connection conn = DBConnection.getConnection();
+		ArrayList<Request> reqList = new ArrayList<Request>();
+		String sql = "SELECT P.lname,P.fname, status from accounts P,accounts S, consultations C where (status ='Approved' or status ='Rejected') and S.idnum =? and P.idnum = C.professor ORDER BY consultationid DESC";
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, idnum);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				Request r = new Request();
+				r.setLastName(rs.getString("lname"));
+				r.setFirstName(rs.getString("fname"));
+				r.setStatus(rs.getString("status"));
+				reqList.add(r);
+			}
+		} catch (SQLException e)
+		{ // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reqList;
+	}
 }
