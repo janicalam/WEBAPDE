@@ -37,7 +37,7 @@ public class ToStudentViewRequest extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.removeAttribute("requestlist");
 		Profile p = (Profile) request.getSession().getAttribute("profile");
-		ArrayList<Request> r = new Manager().getAllStudentRequest(p.getIdNo());
+		ArrayList<Request> r = new Manager().getAllStudentRequest(p.getIdNo(), "All", "All", "All" );
 		request.getSession().setAttribute("requestlist", r);
 
 		ArrayList<Course> c = new Manager().getAllStudentCourses(p.getIdNo());

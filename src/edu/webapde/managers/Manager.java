@@ -202,6 +202,7 @@ public class Manager
 		}
 		return courseList;
 	}
+	
 	public ArrayList<Course> getCourseListByCourse(String course)
 	{
 		Connection conn = DBConnection.getConnection();
@@ -334,7 +335,7 @@ public class Manager
 		}
 	}
 
-	public ArrayList<Request> getAllStudentRequest(int idnum,String prof, String course,String status)
+	public ArrayList<Request> getAllStudentRequest(int idnum, String prof, String course,String status)
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Request> reqList = new ArrayList<Request>();
