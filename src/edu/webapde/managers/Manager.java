@@ -367,7 +367,9 @@ public class Manager
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, idnum);
-			if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All"))
+			if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+				ps.setInt(1, idnum);
+			else if(prof.equalsIgnoreCase("All") && course.equalsIgnoreCase("All"))
 				ps.setString(2, status);
 			else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
 			{
