@@ -123,18 +123,22 @@
 
 						<form class="form-horizontal" role="form">
 							<div class="form-group row">
-								<label for="coursecode" class="control-label col-md-3">Course
-									Code: </label>
+								<label for="day" class="control-label col-md-3">Course: </label>
 								<div class="col-md-5">
-									<input type="text" class="form-control" id="coursecode">
+									<select class="form-control" id="course">
+										<option>All</option>
+										<option>WEBAPDE</option>
+									</select>
 								</div>
 							</div>
 
 							<div class="form-group row">
-								<label for="section" class="control-label col-md-3">Section:
-								</label>
+								<label for="day" class="control-label col-md-3">Section: </label>
 								<div class="col-md-5">
-									<input type="text" class="form-control" id="section">
+									<select class="form-control" id="section">
+										<option>All</option>
+										<option>S11</option>
+									</select>
 								</div>
 							</div>
 
