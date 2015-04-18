@@ -425,15 +425,75 @@ public class Manager
 		return reqList;
 	}
 	
-	public ArrayList<Request> getAllProfRequest(int idnum)
+	public ArrayList<Request> getAllProfRequest(int idnum,String student, String course,String status)
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Request> reqList = new ArrayList<Request>();
-		String sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ?;";
+		String sql="";
+		String name[]= new String[2];
+		if(student.equalsIgnoreCase("All") && course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ?;";
+		else if(student.equalsIgnoreCase("All") && course.equalsIgnoreCase("All")) //search by status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ? and C.status =?;";
+		else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by student
+		{
+			name=student.split(", ");
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum;";
+		}
+		else if(student.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))//search by course
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ? and C.course = ?;";
+		else if(student.equalsIgnoreCase("All"))//search by course and status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A where C.student = A.idnum  and professor = ? and C.status =? and C.course = ?;";
+		else if(status.equalsIgnoreCase("All"))//search by student and course
+		{
+			name=student.split(", ");
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum and C.course = ?;";
+		}
+		else if(course.equalsIgnoreCase("All"))//search by student and status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum and C.status = ?;";
+		else//search by student,course and status
+			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.student = A.idnum  and professor = ? and B.lname =? and B.fname =? and C.student = B.idnum and C.status = ? and C.course =?;";
 		try
 		{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, idnum);
+			if(student.equalsIgnoreCase("All") && course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+				ps.setInt(1, idnum);
+			else if(student.equalsIgnoreCase("All") && course.equalsIgnoreCase("All"))
+				ps.setString(2, status);
+			else if(course.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+			}
+			else if(student.equalsIgnoreCase("All") && status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, course);
+			}
+			else if(student.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, status);
+				ps.setString(3, course);
+			}
+			else if(status.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, course);
+			}
+			else if(course.equalsIgnoreCase("All"))
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, status);
+			}
+			else
+			{
+				ps.setString(2, name[0]);
+				ps.setString(3, name[1]);
+				ps.setString(4, status);
+				ps.setString(5, course);
+			}
 			ResultSet rs = ps.executeQuery();
 			while (rs.next())
 			{
