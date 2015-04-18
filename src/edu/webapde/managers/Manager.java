@@ -468,8 +468,8 @@ public class Manager
 			while (rs.next())
 			{
 				String name = rs.getString("lname");
-				name.concat(", ");
-				name.concat(rs.getString("fname"));
+				name+= ", ";
+				name+=rs.getString("fname");
 				profList.add(name);
 			}
 		} catch (SQLException e)
