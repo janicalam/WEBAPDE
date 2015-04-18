@@ -164,29 +164,44 @@ public class Manager
 	{
 		Connection conn = DBConnection.getConnection();
 		ArrayList<Course> courseList = new ArrayList<Course>();
-		String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses C, webapde_db.accounts B WHERE C.idprofessor = B.idnum and coursecode=? and section=?";
-		try
+		if(course.equalsIgnoreCase("all") && section.equalsIgnoreCase("all"))
 		{
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, course);
-			ps.setString(2, section);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next())
+			courseList = getCourseList();
+		} 
+		else if(section.equalsIgnoreCase("all"))
+		{
+			courseList = getCourseListByCourse(course);
+			
+		}
+		else if (course.equalsIgnoreCase("all"))
+		{
+			courseList = getCourseListBySection(section);
+		}
+		else
+		{
+			String sql = "SELECT coursecode, section, B.lname, B.fname FROM webapde_db.courses C, webapde_db.accounts B WHERE C.idprofessor = B.idnum and coursecode=? and section=?";
+			try
 			{
-				Course c = new Course();
-				c.setCourseCode(rs.getString("coursecode"));
-				c.setSection(rs.getString("section"));
-				c.setProfessorLast(rs.getString("lname"));
-				c.setProfessorFirst(rs.getString("fname"));
-				courseList.add(c);
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, course);
+				ps.setString(2, section);
+				ResultSet rs = ps.executeQuery();
+				while (rs.next())
+				{
+					Course c = new Course();
+					c.setCourseCode(rs.getString("coursecode"));
+					c.setSection(rs.getString("section"));
+					c.setProfessorLast(rs.getString("lname"));
+					c.setProfessorFirst(rs.getString("fname"));
+					courseList.add(c);
+				}
+			} catch (SQLException e)
+			{ // TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SQLException e)
-		{ // TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return courseList;
 	}
-	
 	public ArrayList<Course> getCourseListByCourse(String course)
 	{
 		Connection conn = DBConnection.getConnection();
@@ -345,7 +360,7 @@ public class Manager
 		}
 		else if(course.equalsIgnoreCase("All"))//search by prof and status
 			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum and C.status = ?;";
-		else
+		else//search by prof,course and status
 			sql ="SELECT C.student,C.date,C.fromtime,C.totime,C.course,C.status, A.lname,A.fname FROM consultations C, accounts A, accounts B where C.professor = A.idnum  and student = ? and B.lname =? and B.fname =? and C.professor = B.idnum and C.status = ? and C.course =?;";
 		try
 		{
@@ -450,8 +465,8 @@ public class Manager
 			while (rs.next())
 			{
 				String name = rs.getString("lname");
-				name+= ", ";
-				name+=rs.getString("fname");
+				name.concat(", ");
+				name.concat(rs.getString("fname"));
 				profList.add(name);
 			}
 		} catch (SQLException e)
