@@ -126,8 +126,8 @@
 							<div class="col-md-5">
 								<select class="form-control" id="coursecode" name = "coursecode">
 									<option>All</option>
-									<c:forEach var="r" items="${viewrequestlist}" varStatus="counter">
-										<option>${r.course }</option>
+									<c:forEach var="c" items="${courses}" varStatus="counter">
+										<option>${c.courseCode }</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -139,8 +139,8 @@
 							<div class="col-md-5">
 								<select class="form-control" id="student" name = "student">
 									<option>All</option>
-									<c:forEach var="r" items="${requestlist}" varStatus="counter">
-										<option>${r.lastName},${r.firstName}</option>
+									<c:forEach var="s" items="${students}" varStatus="counter">
+										<option>${s}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -185,7 +185,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="r" items="${requestlist}" varStatus="counter">
+									<c:forEach var="r" items="${viewrequestlist}" varStatus="counter">
 										<tr>
 											<td>${r.course}</td>
 											<td>${r.lastName},${r.firstName}</td>

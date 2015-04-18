@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.webapde.dto.course.Course;
 import edu.webapde.dto.profile.Profile;
 import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
@@ -38,10 +39,11 @@ public class ToProfessorViewRequest extends HttpServlet {
 		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(), "All", "All", "All");
 		request.getSession().setAttribute("viewrequestlist", r);
 		
-		ArrayList<Request> rl = new Manager().getAllProfRequest(p.getIdNo(), "All", "All", "All");
-		request.getSession().setAttribute("requestlist", rl);
+		ArrayList<String> s = new Manager().getAllStudentOfProf(p.getIdNo());
+		request.getSession().setAttribute("students", s);
 		
-		
+		ArrayList<Course> c = new Manager().getAllProfessorCourses(p.getIdNo());
+		request.getSession().setAttribute("courses", c);
 		
 		request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(request, response);
 	}
