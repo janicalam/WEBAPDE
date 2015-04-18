@@ -35,6 +35,9 @@ public class ToStudentRequestConsultation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Profile p = (Profile) request.getSession().getAttribute("profile");
+		ArrayList<Request> notif = new Manager().getAllStudentNotif(p.getIdNo());
+		request.getSession().setAttribute("notif", notif);
 		
 		request.getRequestDispatcher("StudentRequestConsultation.jsp").forward(request, response);
 	}

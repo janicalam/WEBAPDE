@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.webapde.dto.course.Course;
 import edu.webapde.dto.profile.Profile;
+import edu.webapde.dto.profile.Request;
 import edu.webapde.managers.Manager;
 
 /**
@@ -49,6 +50,9 @@ public class ToStudentEditCourseList extends HttpServlet
 		
 		ArrayList<String> coursecode = new Manager().getAllCourseCodes();
 		request.getSession().setAttribute("coursecode", coursecode);
+		
+		ArrayList<Request> notif = new Manager().getAllStudentNotif(p.getIdNo());
+		request.getSession().setAttribute("notif", notif);
 
 		request.getRequestDispatcher("StudentEditCourseList.jsp").forward(
 				request, response);

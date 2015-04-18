@@ -127,7 +127,9 @@
 								<div class="col-md-5">
 									<select class="form-control" id="course">
 										<option>All</option>
-										<option>WEBAPDE</option>
+										<c:forEach var="c" items="${courses}" varStatus="counter">
+											<option>${c}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
