@@ -614,7 +614,7 @@ public class Manager
 	
 	public void addProfCourse(int idnum, String course, String section, String day,String fromtime,String totime)
 	{
-		String sql = "INSERT INTO courses(coursecode,section,idprofessor,day,fromtime,totime)"
+		String sql = "INSERT INTO courses(coursecode,section,idprofessor,date,fromtime,totime)"
 				+ "VALUES (?,?,?,?,?,?);";
 		Connection conn = DBConnection.getConnection();
 
