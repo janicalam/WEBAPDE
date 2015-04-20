@@ -668,5 +668,29 @@ public class Manager
 	
 	public void dropCourse(int idnum, String course, String section)
 	{
+		String id ="SELECT C.idcourse from courses C,courseenrolled E where C.idcourse =E.idcourse and C.coursecode = ? and C.section=?";
+		String delete = "DELETE FROM courseenrolled where idcourse =? and idnum=?";
+		Connection conn = DBConnection.getConnection();
+
+		try
+		{
+			PreparedStatement ps = conn.prepareStatement(id);
+			ps.setString(1, course);
+			ps.setString(2, section);
+			ResultSet r = ps.executeQuery();
+			r.next();
+			int idcourse = r.getInt("idcourse");
+			PreparedStatement p = conn.prepareStatement(delete);
+			p.setInt(1, idcourse);
+			p.setInt(2, idnum);
+			p.executeUpdate();
+			conn.close();
+			ps.close();
+			p.close();
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
