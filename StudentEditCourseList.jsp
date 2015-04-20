@@ -10,7 +10,32 @@
 
 <!-- custom css -->
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-
+<script src="jquery-2.1.3.js"></script>
+<script type="text/javascript">		
+		function addBtn(index){		
+			//e.preventDefault();
+			var x = index;
+			$.ajax({
+				url : "AddCourse",
+				data : {"index" : x,
+				method : "POST",
+				success : function(data) {
+				}
+			}});
+		}
+			
+		function dropBtn(index){
+			//e.preventDefault();
+			var x = index;
+			$.ajax({
+				url : "DropCourse",
+				data : {"index" : x,
+				method : "POST",
+				success : function(data) {
+				}
+			}});
+		}
+	</script>
 </head>
 
 <body>
@@ -81,8 +106,9 @@
 							<c:forEach var="n" items="${notif}" varStatus="counter">
 								<a class="content" href="ToStudentViewRequest">
 									<div class="notif-item">
-										<h4 class="item-text">${n.lastName }, ${n.firstName } · ${n.course }</h4>
-										<p class="item-details">${n.status } your consultation
+										<h4 class="item-text">${n.lastName },${n.firstName }·
+											${n.course }</h4>
+										<p class="item-details">${n.status }yourconsultation
 											request!</p>
 									</div>
 								</a>
@@ -127,8 +153,9 @@
 												<td>${c.courseCode}</td>
 												<td>${c.section}</td>
 												<td>${c.professorLast},${c.professorFirst}</td>
-												<td><form class="form-horizontal" action="DropCourse">
-														<button type="submit" class="btn btn-default btn-xs">
+												<td><form class="form-horizontal">
+														<button type="submit" class="btn btn-default btn-xs"
+															onclick="dropBtn(${counter.index})">
 															<span class="glyphicon glyphicon-remove"></span> Drop
 														</button>
 													</form></td>
@@ -149,15 +176,15 @@
 						<h3>Search Course</h3>
 						<hr class="break" />
 
-						<form class="form-horizontal" role="form" action="StudentEditCourse" method="POST">
+						<form class="form-horizontal" role="form"
+							action="StudentEditCourse" method="POST">
 							<div class="form-group row">
 								<label for="coursecode" class="control-label col-md-3">Course
 									Code: </label>
 								<div class="col-md-5">
-									<select class="form-control" id="course" name= "course">
+									<select class="form-control" id="course" name="course">
 										<option>All</option>
-										<c:forEach var="c" items="${coursecode}"
-											varStatus="counter">
+										<c:forEach var="c" items="${coursecode}" varStatus="counter">
 											<option>${c}</option>
 										</c:forEach>
 									</select>
@@ -168,10 +195,9 @@
 								<label for="section" class="control-label col-md-3">Section:
 								</label>
 								<div class="col-md-5">
-									<select class="form-control" id="section" name = "section">
+									<select class="form-control" id="section" name="section">
 										<option>All</option>
-										<c:forEach var="s" items="${sections}"
-											varStatus="counter">
+										<c:forEach var="s" items="${sections}" varStatus="counter">
 											<option>${s}</option>
 										</c:forEach>
 									</select>
@@ -206,14 +232,17 @@
 										<c:forEach var="courselist" items="${courselist}"
 											varStatus="counter">
 											<tr>
-											<form action = "add">
 												<td>${courselist.courseCode}</td>
 												<td>${courselist.section}</td>
 												<td>${courselist.professorLast},${courselist.professorFirst}</td>
-												<td><button type="submit"
-														class="btn btn-default btn-xs">
-														<span class="glyphicon glyphicon-ok"></span> Add
-													</button> </form></td>
+												<td><form class="form-horizontal">
+														<button type="submit" class="btn btn-default btn-xs"
+															onclick="javascript:addBtn(${counter.index})"<%-- id="addCourse"
+															value="${counter.index} --%>">
+															<span class="glyphicon glyphicon-ok"></span> Add
+														</button>
+													</form></td>
+
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -247,34 +276,57 @@
 	<script
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
-
-	<script>
-		/* $("#search").click(function() {
-			function getSelectedText(elementId) {
-				var elt = document.getElementById(elementId);
-
-				if (elt.selectedIndex == -1)
-					return null;
-
-				return elt.options[elt.selectedIndex].text;
-			}
-
-			var course = getSelectedText('course');
-			var section = getSelectedText('sections');
-
+	<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.js"></script>
+	<script type="text/javascript">
+	//$("#addCourse").click(
+	/* $(document).ready(function() {
+		$('#addCourse').click(function(event) { 
+			var x=$('#addCourse').val();
 			$.ajax({
-				url : "StudentEditCourse",
-				data : {"course" : course,
-						"sections" : section},
+				url : "AddCourse",
+				data : {"index" : x,
 				method : "POST",
 				success : function(data) {
-					//alert(data);
-					$('#content p').text(data);
-					// id = data.idtodo;
 				}
-			});
-		}); */
+			}});	
+		});
+	 */	
+		
+		function addBtn(index, e){
+			
+			e.preventDefault();
+			var x = index;
+			$.ajax({
+				url : "AddCourse",
+				data : {"index" : x,
+				method : "POST",
+				success : function(data) {
+				}
+			}});
+		}
+			
+		function dropBtn(index, e){
+			e.preventDefault();
+			var x = index;
+			$.ajax({
+				url : "DropCourse",
+				data : {"index" : x,
+				method : "POST",
+				success : function(data) {
+				}
+			}});
+		}
+	};
+ -->
+	<!-- /* $("#search").click(function() { function getSelectedText(elementId)
+	{ var elt = document.getElementById(elementId); if (elt.selectedIndex
+	== -1) return null; return elt.options[elt.selectedIndex].text; } var
+	course = getSelectedText('course'); var section =
+	getSelectedText('sections'); $.ajax({ url : "StudentEditCourse", data :
+	{"course" : course, "sections" : section}, method : "POST", success :
+	function(data) { //alert(data); $('#content p').text(data); // id =
+	data.idtodo; } }); }); */
 	</script>
-
+ -->
 </body>
 </html>
