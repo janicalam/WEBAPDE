@@ -10,22 +10,7 @@
 
 <!-- custom css -->
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-<script src="jquery-2.1.3.js"></script>
-<script type="text/javascript">		
-		function gotoSched(index){		
-			//e.preventDefault();
-			var x = index;
-			$.ajax({
-				url : "gotoSched",
-				data : {"index" : x,
-				method : "POST",
-				success : function(data) {
-					$('#prof p').text(data);
-				}
-			}});
-		}
 
-	</script>
 </head>
 
 <body>
@@ -96,9 +81,8 @@
 							<c:forEach var="n" items="${notif}" varStatus="counter">
 								<a class="content" href="ToStudentViewRequest">
 									<div class="notif-item">
-										<h4 class="item-text">${n.lastName },${n.firstName } ·
-											${n.course }</h4>
-										<p class="item-details">${n.status }your consultation
+										<h4 class="item-text">${n.lastName }, ${n.firstName } · ${n.course }</h4>
+										<p class="item-details">${n.status } your consultation
 											request!</p>
 									</div>
 								</a>
@@ -142,8 +126,7 @@
 											<td>${c.section}</td>
 											<td>${c.professorLast},${c.professorFirst}</td>
 											<td><button type="button" class="btn btn-default btn-xs"
-													data-toggle="modal" data-target="#sched1"
-													onclick="javascript:gotoSched(${counter.index})">
+													data-toggle="modal" data-target="#sched1">
 													<span class="glyphicon glyphicon-calendar"></span> View
 													Schedule
 												</button></td>
@@ -161,33 +144,32 @@
 		<!-- content end -->
 
 		<!-- modals -->
-		<div class="modal modal-login fade" id="sched3" tabindex="-1"
-			role="dialog" aria-labelledby="schedLabel3" aria-hidden="true">
+		<div class="modal modal-login fade" id="sched1" tabindex="-1"
+			role="dialog" aria-labelledby="schedLabel1" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header" id = "prof"
+					<div class="modal-header"
 						style="background-color: #222; color: white; border-color: #FF3030;">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true"></span>
 						</button>
-						<h4 class="modal-title" id="schedLabel3">
-							<span class="glyphicon glyphicon-calendar"></span> <p>${prof}</p>
+						<h4 class="modal-title" id="schedLabel1">
+							<span class="glyphicon glyphicon-calendar"></span> WEBAPDE - Ms.
+							Courtney Ngo
 						</h4>
 					</div>
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" method = "post" action= "RequestConsultationServlet">
+						
 						<div class="modal-body modal-wrapper">
-
-							<form>
-								<div class="form-group row">
-									<label for="datexy" class="control-label col-md-1">Date:</label>
-									<div class="col-md-4">
-										<input type="date" class="form-control" id="datexy"
-											mindate="04/23/2015">
-									</div>
-								</div>
-							</form>
-
+						
+							<div class="form-group row">
+				                <label for="dateT" class = "control-label col-md-2">Date:</label>
+				                <div class = "col-md-4">
+				                  <input type="date" class="form-control" id="dateT">
+				                </div>
+				            </div>
+				            
 							<table class="table">
 								<thead class="panel-th">
 									<tr>
@@ -197,49 +179,30 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>7:30 - 8:30</td>
+										<td>7:30 - 8:00</td>
 										<td class="td-selected"></td>
 									</tr>
 
 									<tr>
-										<td>8:30 - 9:30</td>
+										<td>8:00 - 8:30</td>
 										<td class="td-active"></td>
 									</tr>
 
 									<tr>
-										<td>9:30 - 10:30</td>
+										<td>9:00 - 9:30</td>
 										<td class="td-selected"></td>
 									</tr>
 
 									<tr>
-										<td>10:30 - 11:30</td>
+										<td>12:00 - 12:30</td>
 										<td class="td-active"></td>
 									</tr>
 
 									<tr>
-										<td>12:30 - 13:30</td>
+										<td>13:00 - 13:30</td>
 										<td class="td-active"></td>
 									</tr>
 
-									<tr>
-										<td>13:30 - 14:30</td>
-										<td class="td-active"></td>
-									</tr>
-
-									<tr>
-										<td>14:30 - 15:30</td>
-										<td class="td-active"></td>
-									</tr>
-
-									<tr>
-										<td>16:30 - 17:30</td>
-										<td class="td-active"></td>
-									</tr>
-
-									<tr>
-										<td>17:30 - 18:30</td>
-										<td class="td-active"></td>
-									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -257,7 +220,75 @@
 			</div>
 		</div>
 
-		<%-- 		<!-- modals -->
+		<!-- modals -->
+		<div class="modal modal-login fade" id="sched2" tabindex="-1"
+			role="dialog" aria-labelledby="schedLabel2" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"
+						style="background-color: #222; color: white; border-color: #FF3030;">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true"></span>
+						</button>
+						<h4 class="modal-title" id="schedLabel2">
+							<span class="glyphicon glyphicon-calendar"></span> OPERSYS - Mr.
+							Solomon See
+						</h4>
+					</div>
+					<form class="form-horizontal" role="form">
+						<div class="modal-body modal-wrapper">
+							<table class="table">
+								<thead class="panel-th">
+									<tr>
+										<th>Time</th>
+										<th>Availability</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>7:30 - 8:00</td>
+										<td class="td-selected"></td>
+									</tr>
+
+									<tr>
+										<td>8:00 - 8:30</td>
+										<td class="td-selected"></td>
+									</tr>
+
+									<tr>
+										<td>9:00 - 9:30</td>
+										<td class="td-selected"></td>
+									</tr>
+
+									<tr>
+										<td>12:00 - 12:30</td>
+										<td class="td-selected"></td>
+									</tr>
+
+									<tr>
+										<td>13:00 - 13:30</td>
+										<td class="td-active"></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+
+						<div class="modal-footer">
+							<center>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+								<input type="submit" class="btn btn-info btn-custom"
+									value="Submit" />
+							</center>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- modals -->
 		<div class="modal modal-login fade" id="sched1" tabindex="-1"
 			role="dialog" aria-labelledby="schedLabel1" aria-hidden="true">
 			<div class="modal-dialog">
@@ -323,7 +354,7 @@
 					</form>
 				</div>
 			</div>
-		</div> --%>
+		</div>
 
 		<!-- footer -->
 		<div class="row">

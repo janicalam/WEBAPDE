@@ -16,81 +16,39 @@ import edu.webapde.managers.Manager;
 /**
  * Servlet implementation class ProfessorViewRequest
  */
-@WebServlet(urlPatterns =
-{ "/ProfessorViewRequest", "ApproveRequest", "DenyRequest" })
-public class ProfessorViewRequest extends HttpServlet
-{
+@WebServlet("/ProfessorViewRequest")
+public class ProfessorViewRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ProfessorViewRequest() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ProfessorViewRequest()
-	{
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		process(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		process(request, response);
-
-	}
-
-	protected void process(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException
-	{
-		int index;
-		Profile p = (Profile) request.getSession().getAttribute("profile");
-		switch (request.getServletPath())
-		{
-
-		case "ApproveRequest":
-			ArrayList<Request> r1 = (ArrayList<Request>) request.getSession()
-					.getAttribute("viewrequestlist");
-			index = Integer.parseInt(request.getParameter("index"));
-			// new Manager().approveRequest(r1.get(index).getCourse(),
-			// r1.get(index).getStudentID(), r1.get(index).getFromTime(),
-			// r1.get(index).getToTime());
-			break;
-		case "DenyRequest":
-			ArrayList<Request> r2 = (ArrayList<Request>) request.getSession()
-					.getAttribute("viewrequestlist");
-			index = Integer.parseInt(request.getParameter("index"));
-			// new Manager().denyRequest(r2.get(index).getCourse(),
-			// r2.get(index).getStudentID(), r2.get(index).getFromTime(),
-			// r2.get(index).getToTime());
-			break;
-
-		case "/ProfessorViewRequest":
-			String coursecode = request.getParameter("coursecode");
-			String student = request.getParameter("student");
-			String status = request.getParameter("status");
-
-			ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(),
-					student, coursecode, status);
-			request.getSession().setAttribute("viewrequestlist", r);
-
-			request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(
-					request, response);
-		}
+		String coursecode = request.getParameter("coursecode");
+		String student = request.getParameter("student");
+		String status = request.getParameter("status");
+		
+		Profile p = (Profile)request.getSession().getAttribute("profile");
+		ArrayList<Request> r = new Manager().getAllProfRequest(p.getIdNo(), student, coursecode, status);
+		request.getSession().setAttribute("viewrequestlist", r);
+		
+		request.getRequestDispatcher("ProfessorViewRequests.jsp").forward(request, response);
 	}
 
 }

@@ -10,32 +10,7 @@
 
 <!-- custom css -->
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-<script src="jquery-2.1.3.js"></script>
-<script type="text/javascript">		
-		function approve(index){		
-			//e.preventDefault();
-			var x = index;
-			$.ajax({
-				url : "ApproveRequest",
-				data : {"index" : x,
-				method : "POST",
-				success : function(data) {
-				}
-			}});
-		}
-			
-		function deny(index){
-			//e.preventDefault();
-			var x = index;
-			$.ajax({
-				url : "DenyRequest",
-				data : {"index" : x,
-				method : "POST",
-				success : function(data) {
-				}
-			}});
-		}
-	</script>
+
 </head>
 
 <body>
@@ -205,12 +180,10 @@
 											<td>${r.lastName},${r.firstName}</td>
 											<td>${r.fromTime}-${r.toTime}</td>
 											<td>${r.status}</td>
-											<td><button type="submit" class="btn btn-default btn-xs"
-															onclick="javascript:approve(${counter.index})">
+											<td><button type="submit" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-ok"></span> Approve
 												</button></td>
-											<td><button type="submit" class="btn btn-default btn-xs"
-															onclick="javascript:deny(${counter.index})">
+											<td><button type="submit" class="btn btn-default btn-xs">
 													<span class="glyphicon glyphicon-remove"></span> Reject
 												</button></td>
 										</tr>
