@@ -108,7 +108,7 @@
 									<div class="notif-item">
 										<h4 class="item-text">${n.lastName },${n.firstName }·
 											${n.course }</h4>
-										<p class="item-details">${n.status }yourconsultation
+										<p class="item-details">${n.status }your consultation
 											request!</p>
 									</div>
 								</a>
@@ -155,7 +155,7 @@
 												<td>${c.professorLast},${c.professorFirst}</td>
 												<td><form class="form-horizontal">
 														<button type="submit" class="btn btn-default btn-xs"
-															onclick="dropBtn(${counter.index})">
+															onclick="javascript:dropBtn(${counter.index})">
 															<span class="glyphicon glyphicon-remove"></span> Drop
 														</button>
 													</form></td>
@@ -237,8 +237,7 @@
 												<td>${courselist.professorLast},${courselist.professorFirst}</td>
 												<td><form class="form-horizontal">
 														<button type="submit" class="btn btn-default btn-xs"
-															onclick="javascript:addBtn(${counter.index})"<%-- id="addCourse"
-															value="${counter.index} --%>">
+															onclick="javascript:addBtn(${counter.index})">
 															<span class="glyphicon glyphicon-ok"></span> Add
 														</button>
 													</form></td>
